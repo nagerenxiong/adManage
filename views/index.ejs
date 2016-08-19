@@ -1,17 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>index</title>
-	
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/ui.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/all.min.css">
+    <script src="/javascripts/common-lib.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="/javascripts/common-ui.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="/javascripts/common-func.js" type="text/javascript" charset="utf-8" ></script>
+    <script src="/javascripts/common-init.js" type="text/javascript" charset="utf-8" ></script>
 </head>
 <body>
-	<script src="http://127.0.0.1/niuXams/output/forum-4.js"></script>
-	<script src="http://127.0.0.1/niuXams/output/forum-5.js"></script>
-	<script src="http://127.0.0.1/niuXams/output/forum-6.js"></script>
-	<script src="http://127.0.0.1/niuXams/output/forum-7.js"></script>
-	<script src="http://127.0.0.1/niuXams/output/forum-8.js"></script>
-	<script src="http://127.0.0.1/niuXams/output/forum-9.js"></script>
-	<script src="http://127.0.0.1/niuXams/output/forum-9.js"></script>
+    <div style="min-height: 88%;">
+        <style>
+    #head {
+        position: relative;
+        width: 100%;
+        height: 30px;
+        z-index: 10;
+        border-right-width: 0px;
+        border-left-width: 0px;
+        min-width: 1200px;
+    }
+    #logo {
+        height: 30px;
+        width: 120px;
+        text-align: center;
+    }
+
+    #allMenu{
+        position: relative;
+        z-index: 10;
+    }
+    .menu li a{
+        display: block;
+    }
+    .ui-menu {
+        min-width: 100px;
+    }
+
+    #content {
+        position: absolute;
+        overflow: hidden;
+        z-index: 8;
+        left: 0px;
+        top: 32px;
+        right: 0px;
+        bottom: 0px;
+        min-width: 1200px;
+    }
+    #mainFrame {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+        <script>
+    $(function () {
+        var is_show = false;
+        $("#gg").button({
+            icons: {
+                primary: "ui-icon-comment",
+                secondary: "ui-icon-triangle-1-s"
+            }
+        }).mouseenter(function () {
+            is_show && showMenu("#ggMenu", this);
+        }).click(function () {
+            is_show = true;
+            showMenu("#ggMenu", this);
+            return false;
+        });
+        $("#ggcl").button({
+            icons: {
+                primary: "ui-icon-shuffle",
+                secondary: "ui-icon-triangle-1-s"
+            }
+        }).mouseenter(function () {
+            is_show && showMenu("#ggclMenu", this);
+        }).click(function () {
+            is_show = true;
+            showMenu("#ggclMenu", this);
+            return false;
+        });
+        $("#ggw").button({
+            icons: {
+                primary: "ui-icon-flag",
+                secondary: "ui-icon-triangle-1-s"
+            }
+        }).mouseenter(function () {
+            is_show && showMenu("#ggwMenu", this);
+        }).click(function () {
+            is_show = true;
+            showMenu("#ggwMenu", this);
+            return false;
+        });
+        $("#ggws").button({
+            icons: {
+                primary: "ui-icon-script",
+                secondary: "ui-icon-triangle-1-s"
+            }
+        }).mouseenter(function () {
+            is_show && showMenu("#ggwsMenu", this);
+        }).click(function () {
+            is_show = true;
+            showMenu("#ggwsMenu", this);
+            return false;
+        });
+        $("#statistics").button({
+            icons: {
+                primary: "ui-icon-signal",
+                secondary: "ui-icon-triangle-1-s"
+            }
+        }).mouseenter(function () {
+            is_show && showMenu("#statisticsMenu", this);
+        }).click(function () {
+            is_show = true;
+            showMenu("#statisticsMenu", this);
+            return false;
+        });
+        $("#setup").button({
+            icons: {
+                primary: "ui-icon-gear",
+                secondary: "ui-icon-triangle-1-s"
+            }
+        }).mouseenter(function () {
+            is_show && showMenu("#setupMenu", this);
+        }).click(function () {
+            is_show = true;
+            showMenu("#setupMenu", this);
+            return false;
+        });
+        $("#theme").button({
+            icons: {
+                primary: "ui-icon-heart",
+                secondary: "ui-icon-triangle-1-s"
+            }
+        }).mouseenter(function () {
+            is_show && showMenu("#themesMenu", this);
+        }).click(function () {
+            is_show = true;
+            showMenu("#themesMenu", this);
+            return false;
+        });
+        $(".themesItem").click(function () {
+            var theme = $(this).text();
+            $("#themes").attr('href', 'css/' + theme + '/ui.css');
+            $("iframe").contents().find("#themes").attr('href', 'css/' + theme + '/ui.css');
+            $("iframe").contents().find("iframe").contents().find("#themes").attr('href', 'css/' + theme + '/ui.css');
+            setCoo('niuxams_theme', theme, 120);
+            $(this).siblings().removeClass("ui-state-disabled");
+            $(this).addClass("ui-state-disabled");
+        });
+        $("#help").button({
+            icons: {
+                primary: "ui-icon-help"
+            }
+        });
+        $("#logout").button({
+            icons: {
+                primary: "ui-icon-power"
+            }
+        });
+        $("#nav").button({
+            icons: {
+                primary: "ui-icon-arrowthick-1-w"
+            },
+            text: false
+        }).click(function () {
+            history.go(-1);
+        }).next().button({
+            icons: {
+                primary: "ui-icon-arrowthick-1-e"
+            },
+            text: false
+        }).click(function () {
+            history.go(1);
+        }).next().button({
+            icons: {
+                primary: "ui-icon-arrowrefresh-1-e"
+            },
+            text: false
+        }).click(function () {
+            window.frames["main"].document.location.reload(true);
+        }).next().button({
+            icons: {
+                primary: "ui-icon-home"
+            },
+            text: false
+        }).click(function () {
+            window.frames["main"].document.location = 'main.php';
+        });
+        $.get('main.php?menu=ck');
+        function showMenu(menuObj, buttonObj) {
+            var menu = $(menuObj).show().position({
+                my: "left top",
+                at: "left bottom",
+                of: buttonObj
+            });
+            $(document).one("click", function () {
+                menu.hide();
+                is_show = false;
+            });
+            $(window.frames["main"].document).one("click", function () {
+                menu.hide();
+                is_show = false;
+            });
+        }
+    });
+</script>
+        <div id="head" class="ui-widget-header">
+            <div id="logo" class="fl">欢迎访问盈通管理系统</div>
+            <div id="menuBar" class="fl">
+                <a id="gg" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icons" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-comment"></span>
+                    <span class="ui-button-text">广告</span>
+                    <span class="ui-button-icon-secondary ui-icon ui-icon-triangle-1-s"></span>
+                </a>
+                <a id="ggcl" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icons" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-shuffle"></span>
+                    <span class="ui-button-text">广告策略</span>
+                    <span class="ui-button-icon-secondary ui-icon ui-icon-triangle-1-s"></span>
+                </a>
+                <a id="ggw" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icons" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-flag"></span>
+                    <span class="ui-button-text">广告位</span>
+                    <span class="ui-button-icon-secondary ui-icon ui-icon-triangle-1-s"></span>
+                </a>
+                <a id="ggws" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icons" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-script"></span>
+                    <span class="ui-button-text">二段式代码</span>
+                    <span class="ui-button-icon-secondary ui-icon ui-icon-triangle-1-s"></span>
+                </a>
+                <a id="statistics" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icons" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-signal"></span>
+                    <span class="ui-button-text">统计</span>
+                    <span class="ui-button-icon-secondary ui-icon ui-icon-triangle-1-s"></span>
+                </a>
+                <a id="setup" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icons" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-gear"></span>
+                    <span class="ui-button-text">设置</span>
+                    <span class="ui-button-icon-secondary ui-icon ui-icon-triangle-1-s"></span>
+                </a>
+                <a id="theme" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icons" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-heart"></span>
+                    <span class="ui-button-text">主题</span>
+                    <span class="ui-button-icon-secondary ui-icon ui-icon-triangle-1-s"></span>
+                </a>
+                <a id="help" title="访问官网 获取最新帮助" href="http://www.niuxsoft.com/niuxams/" target="_blank" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-help"></span>
+                    <span class="ui-button-text">帮助</span>
+                </a>
+                <a id="logout" title="清除登录痕迹 安全退出系统" href="logout.php" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-power"></span>
+                    <span class="ui-button-text">注销</span>
+                </a>
+                <span id="nav" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="点击可后退">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-arrowthick-1-w"></span>
+                    <span class="ui-button-text">点击可后退</span>
+                </span>
+                <span class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="点击可前进">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-arrowthick-1-e"></span>
+                    <span class="ui-button-text">点击可前进</span>
+                </span>
+                <span class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="重新载入此页">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-arrowrefresh-1-e"></span>
+                    <span class="ui-button-text">重新载入此页</span>
+                </span>
+                <span class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="返回系统主页">
+                    <span class="ui-button-icon-primary ui-icon ui-icon-home"></span>
+                    <span class="ui-button-text">返回系统主页</span>
+                </span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="allMenu">
+    <ul id="ggMenu" class="menu hide absPos ui-menu ui-widget ui-widget-content" role="menu" tabindex="0" style="display: block; top: -2px; left: 120px;" aria-activedescendant="ui-id-1">
+        <li class="ui-widget-header">新建</li>
+        <li class="ui-menu-item" id="ui-id-1" tabindex="-1" role="menuitem"><a target="main" href="gg_edit.php">新建广告</a></li>
+        <li class="ui-menu-item" id="ui-id-2" tabindex="-1" role="menuitem"><a target="main" href="gg_template_edit.php">新建广告模板</a></li>
+        <li class="ui-menu-item" id="ui-id-3" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=1&amp;leizu=lei">新建广告分类</a></li>
+        <li class="ui-menu-item" id="ui-id-4" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=1&amp;leizu=zu">新建广告分组</a></li>
+        <li class="ui-widget-header">列表</li>
+        <li class="ui-menu-item" id="ui-id-5" tabindex="-1" role="menuitem"><a target="main" href="gg_list.php">广告</a></li>
+        <li class="ui-menu-item" id="ui-id-6" tabindex="-1" role="menuitem"><a target="main" href="gg_template_list.php">广告模板</a></li>
+        <li class="ui-menu-item" id="ui-id-7" tabindex="-1" role="menuitem"><a target="main" href="upload_list.php">广告上传素材</a></li>
+        <li class="ui-menu-item" id="ui-id-8" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=1&amp;leizu=lei">广告分类</a></li>
+        <li class="ui-menu-item" id="ui-id-9" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=1&amp;leizu=zu">广告分组</a></li>
+        <li class="ui-menu-item" id="ui-id-10" tabindex="-1" role="menuitem"><a target="main" href="gg_recycle_list.php">广告回收站</a></li>
+    </ul>
+    <ul id="ggclMenu" class="menu hide absPos ui-menu ui-widget ui-widget-content" role="menu" tabindex="0" style="display: none; top: -2px; left: 208.719px;">
+        <li class="ui-widget-header">新建</li>
+        <li class="ui-menu-item" id="ui-id-11" tabindex="-1" role="menuitem"><a target="main" href="ggcl_edit.php">新建广告策略</a></li>
+        <li class="ui-menu-item" id="ui-id-12" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=2&amp;leizu=lei">新建广告策略分类</a></li>
+        <li class="ui-menu-item" id="ui-id-13" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=2&amp;leizu=zu">新建广告策略分组</a></li>
+        <li class="ui-widget-header">列表</li>
+        <li class="ui-menu-item" id="ui-id-14" tabindex="-1" role="menuitem"><a target="main" href="ggcl_list.php">广告策略</a></li>
+        <li class="ui-menu-item" id="ui-id-15" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=2&amp;leizu=lei">广告策略分类</a></li>
+        <li class="ui-menu-item" id="ui-id-16" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=2&amp;leizu=zu">广告策略分组</a></li>
+        <li class="ui-menu-item" id="ui-id-17" tabindex="-1" role="menuitem"><a target="main" href="ggcl_recycle_list.php">广告策略回收站</a></li>
+    </ul>
+    <ul id="ggwMenu" class="menu hide absPos ui-menu ui-widget ui-widget-content" role="menu" tabindex="0" style="display: none; top: -2px; left: 323.844px;" aria-activedescendant="ui-id-20">
+        <li class="ui-widget-header">新建</li>
+        <li class="ui-menu-item" id="ui-id-18" tabindex="-1" role="menuitem"><a target="main" href="ggw_edit.php">新建广告位</a></li>
+        <li class="ui-menu-item" id="ui-id-19" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=3&amp;leizu=lei">新建广告位分类</a></li>
+        <li class="ui-menu-item" id="ui-id-20" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=3&amp;leizu=zu">新建广告位分组</a></li>
+        <li class="ui-widget-header">列表</li>
+        <li class="ui-menu-item" id="ui-id-21" tabindex="-1" role="menuitem"><a target="main" href="ggw_list.php">广告位</a></li>
+        <li class="ui-menu-item" id="ui-id-22" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=3&amp;leizu=lei">广告位分类</a></li>
+        <li class="ui-menu-item" id="ui-id-23" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=3&amp;leizu=zu">广告位分组</a></li>
+        <li class="ui-menu-item" id="ui-id-24" tabindex="-1" role="menuitem"><a target="main" href="ggw_recycle_list.php">广告位回收站</a></li>
+    </ul>
+    <ul id="ggwsMenu" class="menu hide absPos ui-menu ui-widget ui-widget-content" role="menu" tabindex="0" style="display: none; top: -2px; left: 425.766px;">
+        <li class="ui-widget-header">新建</li>
+        <li class="ui-menu-item" id="ui-id-25" tabindex="-1" role="menuitem"><a target="main" href="ggws_edit.php">新建二段式代码</a></li>
+        <li class="ui-menu-item" id="ui-id-26" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=4&amp;leizu=lei">新建二段式代码分类</a></li>
+        <li class="ui-menu-item" id="ui-id-27" tabindex="-1" role="menuitem"><a target="main" href="leizu_edit.php?type=4&amp;leizu=zu">新建二段式代码分组</a></li>
+        <li class="ui-widget-header">列表</li>
+        <li class="ui-menu-item" id="ui-id-28" tabindex="-1" role="menuitem"><a target="main" href="ggws_list.php">二段式代码</a></li>
+        <li class="ui-menu-item" id="ui-id-29" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=4&amp;leizu=lei">二段式代码分类</a></li>
+        <li class="ui-menu-item" id="ui-id-30" tabindex="-1" role="menuitem"><a target="main" href="leizu_list.php?type=4&amp;leizu=zu">二段式代码分组</a></li>
+        <li class="ui-menu-item" id="ui-id-31" tabindex="-1" role="menuitem"><a target="main" href="ggws_recycle_list.php">二段式代码回收站</a></li>
+    </ul>
+    <ul id="statisticsMenu" class="menu hide absPos ui-menu ui-widget ui-widget-content" role="menu" tabindex="0">
+        <li class="ui-widget-header">广告投放</li>
+        <li class="ui-menu-item" id="ui-id-32" tabindex="-1" role="menuitem"><a target="main" href="tj_gg_log.php">广告日志</a></li>
+        <li class="ui-menu-item" id="ui-id-33" tabindex="-1" role="menuitem"><a target="main" href="tj_gg_today.php">今日统计</a></li>
+        <li class="ui-menu-item" id="ui-id-34" tabindex="-1" role="menuitem"><a target="main" href="tj_gg_history.php">历史统计</a></li>
+        <li class="ui-widget-header">系统操作</li>
+        <li class="ui-menu-item" id="ui-id-35" tabindex="-1" role="menuitem"><a target="main" href="tj_op_log.php">操作日志</a></li>
+    </ul>
+    <ul id="setupMenu" class="menu hide absPos ui-menu ui-widget ui-widget-content" role="menu" tabindex="0">
+        <li class="ui-widget-header">系统用户</li>
+        <li class="ui-menu-item" id="ui-id-36" tabindex="-1" role="menuitem"><a target="main" href="sz_admin_list.php">用户管理</a></li>
+        <li class="ui-menu-item" id="ui-id-37" tabindex="-1" role="menuitem"><a target="main" href="sz_admin_power.php">权限管理</a></li>
+        <li class="ui-menu-item" id="ui-id-38" tabindex="-1" role="menuitem"><a target="main" href="sz_admin_lbs.php">群管理</a></li>
+        <li class="ui-widget-header">系统参数</li>
+        <li class="ui-menu-item" id="ui-id-39" tabindex="-1" role="menuitem"><a target="main" href="sz_cs_base.php">基本参数</a></li>
+        <li class="ui-menu-item" id="ui-id-40" tabindex="-1" role="menuitem"><a target="main" href="sz_cs_gg.php">广告参数</a></li>
+        <li class="ui-menu-item" id="ui-id-41" tabindex="-1" role="menuitem"><a target="main" href="sz_cs_tj.php">统计参数</a></li>
+        <li class="ui-menu-item" id="ui-id-42" tabindex="-1" role="menuitem"><a target="main" href="sz_cs_upload.php">上传参数</a></li>
+    </ul>
+    <ul id="themesMenu" class="menu hide absPos ui-menu ui-widget ui-widget-content" role="menu" tabindex="0" style="display: none; top: -2px; left: 731.516px;"><li class="themesItem ui-menu-item" id="ui-id-43" tabindex="-1" role="menuitem">Black Tie</li><li class="themesItem ui-menu-item" id="ui-id-44" tabindex="-1" role="menuitem">Dot Luv</li><li class="themesItem ui-menu-item" id="ui-id-45" tabindex="-1" role="menuitem">Le Frog</li><li class="themesItem ui-menu-item" id="ui-id-46" tabindex="-1" role="menuitem">Redmond</li><li class="themesItem ui-menu-item" id="ui-id-47" tabindex="-1" role="menuitem">Swanky Purse</li><li class="themesItem ui-menu-item" id="ui-id-48" tabindex="-1" role="menuitem">hot sneaks</li><li class="themesItem ui-menu-item" id="ui-id-49" tabindex="-1" role="menuitem">overcast</li><li class="themesItem ui-menu-item" id="ui-id-50" tabindex="-1" role="menuitem">smoothness</li><li class="themesItem ui-state-disabled ui-menu-item" id="ui-id-51" tabindex="-1" role="menuitem" aria-disabled="true">start</li><li class="themesItem ui-menu-item" id="ui-id-52" tabindex="-1" role="menuitem">sunny</li><li class="themesItem ui-menu-item" id="ui-id-53" tabindex="-1" role="menuitem">ui-darkness</li><li class="themesItem ui-menu-item" id="ui-id-54" tabindex="-1" role="menuitem">ui-lightness</li></ul>
+</div>
+    </div>
 </body>
 </html>

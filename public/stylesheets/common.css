@@ -1,0 +1,97 @@
+@charset "utf-8";
+*{
+    padding:0;
+    margin:0;
+}
+html,body{
+    height:100%;
+    width:100%;
+}
+table,img{
+    border:0;
+}
+body{
+    font-family: 'Helvetica Neue','Microsoft Yahei',arial,helvetica,sans-serif;
+    font-size:12px;
+    line-height:1.6em;
+}
+a:link, a:visited{
+    text-decoration:none;
+}
+a:hover, a:active{
+    text-decoration:none;
+}
+li{
+    list-style-type:none;
+}
+.hide{
+    display: none;
+}
+.absPos{
+    position: absolute;
+}
+.rePos{
+    position: relative;
+}
+.fixPos{
+    position: fixed;
+}
+.tc{
+    text-align: center;
+}
+.tr{
+    text-align: right;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clear{
+    clear:both;
+}
+.fullScreen{
+    width:1180px;
+    margin: auto;
+}
+.hd{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+.fw{
+    width:100%;
+}
+.hfw{
+    width:49.9%;
+    float:left;
+}
+.plr{
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.ptb{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.mlr{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.mtb{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.short {
+    width: 5em;
+}
+.mid{
+    width: 10em;
+}
+.long{
+    width: 20em;
+}
+.large{
+    width: 40em;
+}
