@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: '首页' });
 });
-
+router.get('/addAd', function(req, res, next) {
+  res.render('addAd', { title: '添加广告' });
+});
 module.exports = router;

@@ -1,0 +1,131 @@
+<% include header %>
+<style type="text/css" media="screen">
+h3 {
+        width: 14em;
+        padding: .3em;
+    }
+    select {
+        width: 20em;
+    }
+    .text {
+        width: 40em;
+        font-size: 1em;
+        padding: .6em;
+    }
+    .tip {
+        margin-left: 12px;
+        padding: .3em;
+        display: inline-block;
+    }
+    #ggContent {
+        height: 15em;
+        width: 60em;
+    }
+    #clear{
+        top: -2.6em;
+        left: -.6em;
+    }
+    #ggWidth, #ggHeight {
+        width: 5em;
+    }
+    label{
+        display: block;
+    }
+    .dialogText{
+        font-size: 1em;
+        padding: .3em;
+    }
+    #textContent{
+        width: 95%;
+        height: 4em;
+    }
+    #textSize{
+        width: 2em;
+    }
+    #sizeUnit{
+        width: 4.2em;
+    }
+    #textLink{
+        width: 95%;
+    }
+    #imgUrl,#imgAlt,#imgLink{
+        width: 95%;
+    }
+    #imgW,#imgH{
+        width: 3em;
+    }
+    #fileUrl{
+        width: 95%;
+    }
+    #flashW,#flashH{
+        width: 3em;
+    }
+    #ajaxList,ajaxListUp{
+        margin: .6em 0;
+    }
+    #ajaxList table th,#ajaxListUp table th{
+        border-width:0px 1px 0px 0px;
+        font-size:1.2em;
+        line-height:2em;
+    }
+    #ajaxList table td,#ajaxListUp table td{
+        border-width:0px 1px 1px 0px;
+        font-size: 1em;
+        line-height: 1.8em;
+        overflow: hidden;
+    }
+    .yulan{
+        cursor: pointer;
+    }
+    .ui-tooltip {
+        max-width: 1200px;
+        word-break: break-all;
+    }
+ </style>
+<div class="fullScreen">
+    <h2 class="ptb hd ui-widget-content">新建广告</h2>
+    <form>
+        <div class="plr ptb">
+            <h3 class="fl">广告名称</h3>
+            <input class="text fl ui-widget-content ui-corner-all" id="ggTitle" value="创建于2016-08-22 11:28:30" placeholder="不超过80个汉字">
+            <span class="tip clear">* 不超过80个汉字</span>
+        </div>
+        <div class="plr ptb">
+            <h3 class="fl">广告类型</h3>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="textGG" role="button"><span class="ui-button-text"><span class="ui-button-text">文字</span></span></button>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="imgGG" role="button"><span class="ui-button-text"><span class="ui-button-text">图片</span></span></button>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="flashGG" role="button"><span class="ui-button-text"><span class="ui-button-text">flash</span></span></button>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="ggTemp" role="button"><span class="ui-button-text"><span class="ui-button-text">模板</span></span></button>
+        </div>
+        <div class="plr ptb">
+            <h3 class="fl">广告盒子ID</h3>
+            <input type="text" name="" value="advertisingBox_1" placeholder="" disabled="" class="text  ui-widget-content ui-corner-all" style="width: 20em">
+            <span class="tip clear">* 把外层ID设置成这里的值</span>
+        </div>
+        <div class="plr ptb">
+            <h3 class="fl">广告源代码</h3>
+            <textarea class="text fl ui-widget-content ui-corner-all" id="ggContent" placeholder="不超过10000"></textarea>
+            <span class="ui-icon ui-icon-circle-close rePos" id="clear" style="cursor: pointer;" title="清空"></span>
+        </div>
+        <div class="plr ptb clear">
+            <h3 class="fl">工具</h3>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="textGG" role="button"><span class="ui-button-text"><span class="ui-button-text">文字</span></span></button>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="imgGG" role="button"><span class="ui-button-text"><span class="ui-button-text">图片</span></span></button>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="flashGG" role="button"><span class="ui-button-text"><span class="ui-button-text">flash</span></span></button>
+        </div>
+        <div class="plr ptb">
+            <h3 class="fl">广告分类</h3>
+            <p class="fl">
+                <select class="selectmenu" id="ggLei" style="display: none;"><option value="1" selected="selected">默认广告分类</option></select>
+            </p>
+            <span class="tip clear">&nbsp;</span>
+        </div>
+        <div class="plr ptb">
+            <h3 class="fl"></h3>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submit" role="button"><span class="ui-button-text"><span class="ui-button-text"> 完 成 </span></span></button>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="reset" role="button"><span class="ui-button-text"><span class="ui-button-text"> 重 置 </span></span></button>
+            <span class="tip clear"></span>
+        </div>
+    </form>
+</div>
+<% include footer %>
