@@ -209,7 +209,7 @@ button.ui-button-icons-only {
 	line-height: normal
 }
 .ui-button-text-only .ui-button-text {
-	padding: .2em 1em
+	padding: .2em 0.5em
 }
 .ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text {
 	padding: .4em;
@@ -222,8 +222,8 @@ button.ui-button-icons-only {
 	padding: .2em 2.1em .2em 1em
 }
 .ui-button-text-icons .ui-button-text {
-	padding-left: 2.1em;
-	padding-right: 2.1em
+	padding-left: 1.1em;
+	padding-right: 1.1em
 }
 input.ui-button {
 	padding: .4em 1em
