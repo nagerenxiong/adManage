@@ -23,7 +23,9 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "jade": "~1.11.0",
+    "moment": "^2.14.1",
     "morgan": "~1.7.0",
+    "mysql": "^2.11.1",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
