@@ -91,50 +91,116 @@ h3 {
     <form>
         <div class="plr ptb">
             <h3 class="fl">广告名称</h3>
-            <input class="text fl ui-widget-content ui-corner-all" id="ggTitle" value="创建于2016-08-22 11:28:30" placeholder="不超过80个汉字">
+            <input class="text fl ui-widget-content ui-corner-all" id="name" placeholder="不超过80个汉字">
             <span class="tip clear">* 不超过80个汉字</span>
         </div>
         <div class="plr ptb">
-            <h3 class="fl">广告类型</h3>
-            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="textGG" role="button"><span class="ui-button-text"><span class="ui-button-text">文字</span></span></button>
-            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="imgGG" role="button"><span class="ui-button-text"><span class="ui-button-text">图片</span></span></button>
-            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="flashGG" role="button"><span class="ui-button-text"><span class="ui-button-text">flash</span></span></button>
-            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="ggTemp" role="button"><span class="ui-button-text"><span class="ui-button-text">模板</span></span></button>
-        </div>
-        <div class="plr ptb">
             <h3 class="fl">广告盒子ID</h3>
-            <input type="text" name="" value="advertisingBox_1" placeholder="" disabled="" class="text  ui-widget-content ui-corner-all" style="width: 20em">
+            <input type="text" id="boxId"  data-boxId="<%=boxId%>" value="advertisingBox_<%=boxId%>" placeholder="" disabled="" class="text  ui-widget-content ui-corner-all" style="width: 20em">
             <span class="tip clear">* 把外层ID设置成这里的值</span>
+        </div>
+        <div class="plr ptb clear">
+            <h3 class="fl">工具</h3>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="textGG" role="button">
+                <span class="ui-button-text">
+                    <span class="ui-button-text">文字</span>
+                </span>
+            </button>
+            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="imgGG" role="button">
+                <span class="ui-button-text">
+                    <span class="ui-button-text">图片</span>
+                </span>
+            </button>
         </div>
         <div class="plr ptb">
             <h3 class="fl">广告html</h3>
-            <textarea class="text fl ui-widget-content ui-corner-all ggContent"  placeholder="不超过10000"></textarea>
-            <span class="ui-icon ui-icon-circle-close rePos" id="clear" style="cursor: pointer;" title="清空"></span>
+            <textarea class="text fl ui-widget-content ui-corner-all ggContent"  id="html" placeholder="不超过10000"></textarea>
+            <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
         </div>
         <div style="clear:both"></div>
         <div class="plr ptb">
             <h3 class="fl">广告js</h3>
-            <textarea class="text fl ui-widget-content ui-corner-all ggContent"placeholder="不超过10000"></textarea>
-            <span class="ui-icon ui-icon-circle-close rePos" id="clear" style="cursor: pointer;" title="清空"></span>
+            <textarea class="text fl ui-widget-content ui-corner-all ggContent" id="js" placeholder="不超过10000"></textarea>
+            <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
         </div>
-        <div class="plr ptb clear">
-            <h3 class="fl">工具</h3>
-            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="textGG" role="button"><span class="ui-button-text"><span class="ui-button-text">文字</span></span></button>
-            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="imgGG" role="button"><span class="ui-button-text"><span class="ui-button-text">图片</span></span></button>
+        <div style="clear:both"></div>
+        <div class="plr ptb">
+            <h3 class="fl">广告css</h3>
+            <textarea class="text fl ui-widget-content ui-corner-all ggContent" id="css" placeholder="不超过10000"></textarea>
+            <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
         </div>
+          <div style="clear:both"></div>
         <div class="plr ptb">
             <h3 class="fl">广告分类</h3>
             <p class="fl">
-                <select class="selectmenu" id="ggLei" style="display: none;"><option value="1" selected="selected">默认广告分类</option></select>
+                <select class="selectmenu" id="ggLei" style="display: none;">
+               <% for(var i=0;i<categoryList.length;i++){%>
+                <option value="<%=categoryList[i]["id"]%>" ><%=categoryList[i]["name"]%></option>
+                <% } %>
+                </select>
             </p>
             <span class="tip clear">&nbsp;</span>
         </div>
         <div class="plr ptb">
             <h3 class="fl"></h3>
             <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submit" role="button"><span class="ui-button-text"><span class="ui-button-text"> 完 成 </span></span></button>
-            <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="reset" role="button"><span class="ui-button-text"><span class="ui-button-text"> 重 置 </span></span></button>
+        <!--     <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="reset" role="button"><span class="ui-button-text"><span class="ui-button-text"> 重 置 </span></span></button> -->
             <span class="tip clear"></span>
         </div>
     </form>
 </div>
+<div  id="photoDialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="dialog_imgGG" aria-labelledby="ui-id-3" style="display: none;border-radius:0">
+    <div id="dialog_imgGG" class="hide ui-dialog-content ui-widget-content" style="display: block; width: auto; min-height: 36px; max-height: none; height: auto;">
+        <p class="mtb">
+            <label>图片文件：</label>
+            <input id="imgUrl" class="dialogText ui-widget-content ui-corner-all" id="imgUrl" value="">
+            <iframe id="imgUp" class="dialogText ui-widget-content ui-corner-all" src="/upload" frameborder="0" scrolling="no" height="40px" width="95%"></iframe>
+            <button class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="selectImgs" role="button">
+                <span class="ui-button-text">图库中选择</span>
+            </button>
+        </p>
+        <p class="mtb">
+            <label>图片尺寸：</label>
+            <input id="imgW" class="dialogText ui-widget-content ui-corner-all">
+            宽×
+            <input id="imgH" class="dialogText ui-widget-content ui-corner-all">高(px)</p>
+        <p class="mtb">
+            <label>图片描述：</label>
+            <input id="imgAlt" class="dialogText ui-widget-content ui-corner-all"></p>
+        <p class="mtb">
+            <label>点击链接：</label>
+            <input id="imgLink" value="http://" class="dialogText ui-widget-content ui-corner-all"></p>
+        <p class="buttonset mtb ui-buttonset">
+            <label>目标窗口：</label>
+            <input type="radio" id="imgTag1" value="_blank" name="imgTag" checked="checked" class="ui-helper-hidden-accessible">
+            <label for="imgTag1" class="ui-state-active ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left" role="button">
+                <span class="ui-button-text">新窗口</span>
+            </label>
+            <input type="radio" id="imgTag2" value="_self" name="imgTag" class="ui-helper-hidden-accessible">
+            <label for="imgTag2" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" role="button">
+                <span class="ui-button-text">原窗口</span>
+            </label>
+        </p>
+    </div>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+        <div class="ui-dialog-buttonset">
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+                <span class="ui-button-text">生成原代码</span>
+            </button>
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+                <span class="ui-button-text">取消</span>
+            </button>
+        </div>
+    </div>
+    <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
+    <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+    <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+    <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+    <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+    <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+    <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+    <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+</div>
+<script src="/javascripts/layer/layer.js" type="text/javascript" charset="utf-8" ></script>
+<script src="/javascripts/app/addAd.js" type="text/javascript" charset="utf-8" ></script>
 <% include footer %>
