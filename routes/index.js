@@ -7,13 +7,25 @@ var fs = require('fs');
 var util = require('util');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('index', {
-		title: '首页'
+	fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id", function(rows) {
+		for (var i = 0; i < rows.length; i++) {
+			rows[i]['time'] = moment(rows[i]['time']).format('YYYY-MM-DD HH:mm:ss');
+		}
+		res.render('index', {
+			title: '首页',
+			advList:rows
+		});
+	})
+});
+router.get('/addAdBox', function(req, res, next) {
+	res.render('addAdBox', {
+		title: '添加广告位'
 	});
 });
-
 router.get('/upload', function(req, res, next) {
-	res.render('upload',{files:false});
+	res.render('upload', {
+		files: false
+	});
 });
 router.post('/upload', function(req, res, next) {
 	//生成multiparty对象，并配置上传目标路径
@@ -23,7 +35,6 @@ router.post('/upload', function(req, res, next) {
 	//上传完成后处理
 	form.parse(req, function(err, fields, files) {
 		var filesTmp = JSON.stringify(files, null, 2);
-
 		if (err) {
 			console.log('parse error: ' + err);
 		} else {
@@ -52,7 +63,9 @@ router.post('/upload', function(req, res, next) {
 		// }));
 		console.log(fields);
 		console.log(files);
-		res.render('upload',{files:files.userfile[0]["path"]});
+		res.render('upload', {
+			files: files.userfile[0]["path"]
+		});
 	});
 });
 router.get('/addAd', function(req, res, next) {
@@ -116,12 +129,13 @@ router.post('/api/addAd', function(req, res, next) {
 
 router.post('/api/addCategory', function(req, res, next) {
 	var name = req.body.name;
+	var type=req.body.type;
 	fun.query("select * from  category where name=('" + name + "')", function(rows) {
 		if (rows.length > 0) {
 			res.send("2");
 		} else {
 			var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
-			fun.query("insert into category(name,time) values ('" + name + "','" + curTime + "')", function(rows1) {
+			fun.query("insert into category(name,time,type) values ('" + name + "','" + curTime + "','" + type + "')", function(rows1) {
 				res.send(rows1);
 			});
 		}
@@ -147,4 +161,17 @@ router.post('/api/deleteCategory', function(req, res, next) {
 		res.send(rows);
 	})
 });
+
+router.post('/api/deleteAdv', function(req, res, next) {
+	var idList = req.body['idList[]'];
+	console.log(typeof(idList));
+	if (typeof(idList) == "string")
+		idList = idList[0];
+	else
+		idList = idList.join(',');
+	fun.query("delete from adv  where id in (" + idList + ") ", function(rows) {
+		res.send(rows);
+	})
+});
+
 module.exports = router;

@@ -149,8 +149,8 @@ h3 {
         </div>
     </form>
 </div>
-<div  id="photoDialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="dialog_imgGG" aria-labelledby="ui-id-3" style="display: none;border-radius:0">
-    <div id="dialog_imgGG" class="hide ui-dialog-content ui-widget-content" style="display: block; width: auto; min-height: 36px; max-height: none; height: auto;">
+<div  id="photoDialog" class="ui-dialog ui-widget ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="dialog_imgGG" aria-labelledby="ui-id-3" style="display: none;border-radius:0">
+    <div id="dialog_imgGG" class="hide ui-dialog-content ui-widget-content" style="display: block; width: auto; min-height: 36px; max-height: none; height: auto;padding-right: 0">
         <p class="mtb">
             <label>图片文件：</label>
             <input id="imgUrl" class="dialogText ui-widget-content ui-corner-all" id="imgUrl" value="">
@@ -184,23 +184,55 @@ h3 {
     </div>
     <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
         <div class="ui-dialog-buttonset">
-            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+            <button type="button" id="generateCode" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
                 <span class="ui-button-text">生成原代码</span>
             </button>
-            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only closeBtn" role="button">
                 <span class="ui-button-text">取消</span>
             </button>
         </div>
     </div>
-    <div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
-    <div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
-    <div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
-    <div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
-    <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
-    <div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
-    <div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
-    <div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
 </div>
+
+<div id="fontDialog" class="ui-dialog ui-widget ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="dialog_textGG" aria-labelledby="ui-id-2" style="display: none;border-radius:0">
+    <div id="dialog_textGG" class="hide ui-dialog-content ui-widget-content" style="display: block; width: auto; min-height: 35px; max-height: none; height: auto;width:396px;">
+        <p class="mtb">
+            <label>文字内容：</label>
+            <textarea class="dialogText ui-widget-content ui-corner-all" id="textContent"></textarea>
+        </p>
+        <p class="mtb">
+            <label>文字大小：</label>
+            <input id="textSize" value="12" class="dialogText ui-widget-content ui-corner-all">
+        </p>
+        <p class="mtb">
+            <label>点击链接：</label>
+            <input id="textLink" value="http://" class="dialogText ui-widget-content ui-corner-all"></p>
+        <p class="buttonset mtb ui-buttonset">
+            <label>目标窗口：</label>
+            <input type="radio" id="textTag1" value="_blank" name="textTag" checked="checked" class="ui-helper-hidden-accessible">
+            <label for="textTag1" class="ui-state-active ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left" role="button">
+                <span class="ui-button-text">新窗口</span>
+            </label>
+            <input type="radio" id="textTag2" value="_self" name="textTag" class="ui-helper-hidden-accessible">
+            <label for="textTag2" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" role="button">
+                <span class="ui-button-text">原窗口</span>
+            </label>
+        </p>
+    </div>
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+        <div class="ui-dialog-buttonset">
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" id="generateCode1">
+                <span class="ui-button-text">生成原代码</span>
+            </button>
+            <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only closeBtn" role="button">
+                <span class="ui-button-text">取消</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
 <script src="/javascripts/layer/layer.js" type="text/javascript" charset="utf-8" ></script>
 <script src="/javascripts/app/addAd.js" type="text/javascript" charset="utf-8" ></script>
 <% include footer %>

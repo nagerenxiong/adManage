@@ -15,7 +15,7 @@
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
         <input id="userFile" class="button ui-button ui-widget ui-state-default ui-corner-all" name="userfile" type="file" role="button" style="width:100%">
     </form>
-    <img src="" id="img" alt="" >
+    <img src="" id="img" alt=""  style="display:none">
     <input type="hidden" id="imgUrl" value="<%=files%>">
     <script>
         $("#userFile").change(function () {
@@ -28,15 +28,11 @@
         	uploadPath=uploadPath.replace(/public\\/g,"").replace(/\\/g,"/");
 		    $("#img").attr('src',"http://localhost:5000/"+uploadPath);
     	    $("#imgUrl", window.parent.document).val("http://localhost:5000/"+uploadPath);
-    	    var tempImg=document.createElement('img');
-    	    tempImg.src=uploadPath;
-		    $("#imgW", window.parent.document).val(tempImg.width);
-		    $("#imgH", window.parent.document).val(tempImg.height);
+    	    setTimeout(function(){
+		    $("#imgW", window.parent.document).val(document.getElementById("img").width);
+		    $("#imgH", window.parent.document).val(document.getElementById("img").height);
+    	    },1000)
         }
-
-
-
-
 </script>
 </body>
 </html>

@@ -1,4 +1,8 @@
 $("#submit").click(function() {
+	var type=1;
+	if($("#catType").prop('checked')){
+		type=2;
+	}
 	var name = $.trim($("#name").val());
 	if (name == "") {
 		layer.tips('请输入类名', '#submit', {
@@ -12,7 +16,8 @@ $("#submit").click(function() {
 		type: 'post',
 		async:false,
 		data: {
-			name: name
+			name: name,
+			type:type
 		},
 		success: function(result) {
 			if (result.affectedRows== 1) {
@@ -36,4 +41,13 @@ $("#submit").click(function() {
 			}
 		}
 	})
+})
+$("#catType").click(function(){
+	if($(this).prop('checked'))
+	{
+		$("#label").text('新建广告位分类');
+	}
+	else{
+		$("#label").text('新建广告分类');
+	}
 })
