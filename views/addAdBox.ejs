@@ -31,408 +31,121 @@
 </style>
 <div class="fullScreen">
     <h2 class="ptb hd ui-widget-content">新建广告位</h2>
-    <form>
-        <div class="plr ptb">
-            <h3 class="fl">广告位名称</h3>
-            <input class="text large fl ui-widget-content ui-corner-all" id="ggwTitle" value="创建于2016-08-25 14:10:00" placeholder="不超过80个汉字">    
-            <span class="tip clear">* 不超过80个汉字</span>
-        </div>
-        <div class="plr ptb">
-            <h3 class="fl">广告位分类</h3>
-            <p class="fl">
-                <select class="selectmenu long" id="ggwLei" style="display: none;">
-                    <option value="3" selected="selected">默认广告位分类</option>
-                    <option value="5">ddd</option>
-                </select>
-            </p>
-            <span class="tip clear">&nbsp;</span>
-        </div>
-        <div class="plr ptb">
-            <h3 class="fl">背景广告</h3>
-         <div class="list fl" id="xzgg">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ui-widget-content" style="border-width:1px 0px 0px 1px;">
-                    <tbody><tr>
+    <div class="plr ptb">
+        <h3 class="fl">广告位名称</h3>
+        <input class="text large fl ui-widget-content ui-corner-all" id="ggwTitle" value="" placeholder="不超过80个汉字">
+        <span class="tip clear">* 不超过80个汉字</span>
+    </div>
+    <div class="plr ptb">
+        <h3 class="fl">广告位分类</h3>
+        <p class="fl">
+            <select class="selectmenu long" id="ggwLei" style="display: none;">
+                <% for(var i=0;i<categoryList.length;i++){%>
+                <option value="<%=categoryList[i]['id']%>
+                    ">
+                    <%=categoryList[i]['name']%></option>
+                <% } %></select>
+        </p>
+        <span class="tip clear">&nbsp;</span>
+    </div>
+    <div class="plr ptb" style="overflow:hidden">
+        <h3 class="fl">所有广告</h3>
+        <div class="list fl" id="xzgg">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ui-widget-content" style="border-width:1px 0px 0px 1px;">
+                <tbody>
+                    <tr>
                         <th class="ui-widget-header" scope="col" style="width: 4.8em;">操作</th>
                         <th class="ui-widget-header" scope="col" style="width: 4em;">编号</th>
                         <th class="ui-widget-header" scope="col" style="width: 18em;">广告名称（停留查看代码/点击预览）</th>
-                        <th class="ui-widget-header" scope="col" style="width: 3em;">修改</th>
-                        <th class="ui-widget-header" scope="col" style="width: 3em;">展现</th>
-                        <th class="ui-widget-header" scope="col" style="width: 4em;">宽(px)</th>
-                        <th class="ui-widget-header" scope="col" style="width: 4em;">高(px)</th>
                         <th class="ui-widget-header" scope="col" style="width: 8em;">分类</th>
-                        <th class="ui-widget-header" scope="col" style="width: 8em;">分组</th>
+                        <th class="ui-widget-header" scope="col" style="width: 12em;">盒子ID</th>
+                        <th class="ui-widget-header" scope="col" style="width: 8em;">最后修改时间</th>
                     </tr>
-                     
-                <tr><td class="ui-widget-content tc"><button type="button" class="button delselectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160822110226 / 11" value="20160822110226 / 11" role="button"><span class="ui-button-text">移除</span></button></td><td class="ui-widget-content tc">11</td><td class="ui-widget-content plr"><a href="gg_preview.php?id=11" target="_blank" class="gg_source" title="wwwwwwwwwww">kkkkkkkk</a></td><td class="ui-widget-content tc"><a href="gg_edit.php?id=11" target="_blank" title="kkkkkkkk">修改</a></td><td class="ui-widget-content tc"><span title="wwwwwwwwwww" class="gg_preview">固定</span></td><td class="ui-widget-content tc">-</td><td class="ui-widget-content tc">-</td><td class="ui-widget-content plr"><span title="默认广告分类">默认广告分类</span></td><td class="ui-widget-content plr"><span title="默认广告分组">默认广告分组</span></td></tr></tbody></table>
-            </div>
-            <span class="tip clear"></span>
+                </tbody>
+            </table>
         </div>
-        <div class="plr ptb" style="margin-top:60px;">
-            <h3 class="fl">&nbsp;</h3>
-            <div class="fl">
-                <div class="list" id="listgg">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ui-widget-content" style="border-width:0px 0px 0px 1px;">
-                        <tbody>
-                            <tr>
-                                <th class="ui-widget-header" scope="col" style="width: 4.8em;">操作</th>
-                                <th class="ui-widget-header" scope="col" style="width: 4em;">编号</th>
-                                <th class="ui-widget-header" scope="col" style="width: 18em;">广告名称（停留查看代码/点击预览）</th>
-                                <th class="ui-widget-header" scope="col" style="width: 3em;">修改</th>
-                                <th class="ui-widget-header" scope="col" style="width: 3em;">展现</th>
-                                <th class="ui-widget-header" scope="col" style="width: 4em;">宽(px)</th>
-                                <th class="ui-widget-header" scope="col" style="width: 4em;">高(px)</th>
-                                <th class="ui-widget-header" scope="col" style="width: 8em;">分类</th>
-                                <th class="ui-widget-header" scope="col" style="width: 8em;">分组</th>
-                            </tr>
-                            <tr>
-                                <td class="ui-widget-content tc">
-                                    <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160824111305 / 15" value="20160824111305 / 15" role="button">
-                                        <span class="ui-button-text">选择</span>
-                                    </button>
-                                </td>
-                                <td class="ui-widget-content tc">15</td>
-                                <td class="ui-widget-content plr">
-                                    <a href="gg_preview.php?id=15" target="_blank" class="gg_source" title="<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-                                        <img src=&quot;http://127.0.0.1/niuXams/upload/20160824111303.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;96&quot; height=&quot;60&quot; />    
-                                    </a>
-                                    ">ce12
-                                </a>
+        <span class="tip clear"></span>
+    </div>
+    <div class="plr ptb" style="margin-top:60px;">
+        <h3 class="fl">&nbsp;</h3>
+        <div class="fl">
+            <div class="list" id="listgg">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ui-widget-content" style="border-width:0px 0px 0px 1px;">
+                    <tbody>
+                        <tr>
+                            <th class="ui-widget-header" scope="col" style="width: 4.8em;">操作</th>
+                            <th class="ui-widget-header" scope="col" style="width: 4em;">编号</th>
+                            <th class="ui-widget-header" scope="col" style="width: 18em;">广告名称（停留查看代码/点击预览）</th>
+                            <th class="ui-widget-header" scope="col" style="width: 8em;">分类</th>
+                            <th class="ui-widget-header" scope="col" style="width: 12em;">盒子ID</th>
+                            <th class="ui-widget-header" scope="col" style="width: 8em;">最后修改时间</th>
+                        </tr>
+                        <% for(var i=0;i<advList.length;i++) {%>
+                        <tr data-id="<%=advList[i]["id"]%>
+                            " data-catId="
+                            <%=advList[i]["catId"]%>
+                            ">
+                            <td class="ui-widget-content tc">
+                                <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ">
+                                    <span class="ui-button-text">选择</span>
+                                </button>
                             </td>
                             <td class="ui-widget-content tc">
-                                <a href="gg_edit.php?id=15" target="_blank" title="ce12">修改</a>
+                                <%=advList[i]["id"]%></td>
+                            <td class="ui-widget-content plr">
+                                <a href="/#" target="_blank" class="gg_source" title="<%=advList[i]["html"]%>
+                                    ">
+                                    <%=advList[i]["name"]%></a>
+                                <div style="display:none" class="html">
+                                    <%=advList[i]["html"]%></div>
+                                <div style="display:none" class="js">
+                                    <%=advList[i]["js"]%></div>
+                                <div style="display:none" class="css">
+                                    <%=advList[i]["css"]%></div>
                             </td>
-                            <td class="ui-widget-content tc">
-                                <span title="<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-                                    <img src=&quot;http://127.0.0.1/niuXams/upload/20160824111303.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;96&quot; height=&quot;60&quot; />    
-                                </a>
-                                " class="gg_preview">固定
-                            </span>
-                        </td>
-                        <td class="ui-widget-content tc">-</td>
-                        <td class="ui-widget-content tc">-</td>
-                        <td class="ui-widget-content plr">
-                            <span title="默认广告分类">默认广告分类</span>
-                        </td>
-                        <td class="ui-widget-content plr">
-                            <span title="默认广告分组">默认广告分组</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="ui-widget-content tc">
-                            <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160824111247 / 14" value="20160824111247 / 14" role="button">
-                                <span class="ui-button-text">选择</span>
-                            </button>
-                        </td>
-                        <td class="ui-widget-content tc">14</td>
-                        <td class="ui-widget-content plr">
-                            <a href="gg_preview.php?id=14" target="_blank" class="gg_source" title="<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-                                <img src=&quot;http://127.0.0.1/niuXams/upload/20160824111238.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;104&quot; height=&quot;36&quot; />    
-                            </a>
-                            ">celue
-                        </a>
-                    </td>
-                    <td class="ui-widget-content tc">
-                        <a href="gg_edit.php?id=14" target="_blank" title="celue">修改</a>
-                    </td>
-                    <td class="ui-widget-content tc">
-                        <span title="<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-                            <img src=&quot;http://127.0.0.1/niuXams/upload/20160824111238.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;104&quot; height=&quot;36&quot; />    
-                        </a>
-                        " class="gg_preview">固定
-                    </span>
-                </td>
-                <td class="ui-widget-content tc">-</td>
-                <td class="ui-widget-content tc">-</td>
-                <td class="ui-widget-content plr">
-                    <span title="默认广告分类">默认广告分类</span>
-                </td>
-                <td class="ui-widget-content plr">
-                    <span title="默认广告分组">默认广告分组</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="ui-widget-content tc">
-                    <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160822141947 / 13" value="20160822141947 / 13" role="button">
-                        <span class="ui-button-text">选择</span>
-                    </button>
-                </td>
-                <td class="ui-widget-content tc">13</td>
-                <td class="ui-widget-content plr">
-                    <a href="gg_preview.php?id=13" target="_blank" class="gg_source" title="document.getElementsByTagName('body').append('<div style=&quot;background:red&quot;>asdf</div>
-                    ')">创建于2016-08-22 14:09:41
-                </a>
-            </td>
-            <td class="ui-widget-content tc">
-                <a href="gg_edit.php?id=13" target="_blank" title="创建于2016-08-22 14:09:41">修改</a>
-            </td>
-            <td class="ui-widget-content tc">
-                <span title="document.getElementsByTagName('body').append('<div style=&quot;background:red&quot;>asdf</div>
-                ')" class="gg_preview">固定
-            </span>
-        </td>
-        <td class="ui-widget-content tc">-</td>
-        <td class="ui-widget-content tc">-</td>
-        <td class="ui-widget-content plr">
-            <span title="默认广告分类">默认广告分类</span>
-        </td>
-        <td class="ui-widget-content plr">
-            <span title="默认广告分组">默认广告分组</span>
-        </td>
-    </tr>
-    <tr>
-        <td class="ui-widget-content tc">
-            <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160822110226 / 11" value="20160822110226 / 11" role="button">
-                <span class="ui-button-text">选择</span>
-            </button>
-        </td>
-        <td class="ui-widget-content tc">11</td>
-        <td class="ui-widget-content plr">
-            <a href="gg_preview.php?id=11" target="_blank" class="gg_source" title="wwwwwwwwwww">kkkkkkkk</a>
-        </td>
-        <td class="ui-widget-content tc">
-            <a href="gg_edit.php?id=11" target="_blank" title="kkkkkkkk">修改</a>
-        </td>
-        <td class="ui-widget-content tc">
-            <span title="wwwwwwwwwww" class="gg_preview">固定</span>
-        </td>
-        <td class="ui-widget-content tc">-</td>
-        <td class="ui-widget-content tc">-</td>
-        <td class="ui-widget-content plr">
-            <span title="默认广告分类">默认广告分类</span>
-        </td>
-        <td class="ui-widget-content plr">
-            <span title="默认广告分组">默认广告分组</span>
-        </td>
-    </tr>
-    <tr>
-        <td class="ui-widget-content tc">
-            <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160822105733 / 10" value="20160822105733 / 10" role="button">
-                <span class="ui-button-text">选择</span>
-            </button>
-        </td>
-        <td class="ui-widget-content tc">10</td>
-        <td class="ui-widget-content plr">
-            <a href="gg_preview.php?id=10" target="_blank" class="gg_source" title="啊手动阀手动阀">uuuuuuuuu</a>
-        </td>
-        <td class="ui-widget-content tc">
-            <a href="gg_edit.php?id=10" target="_blank" title="uuuuuuuuu">修改</a>
-        </td>
-        <td class="ui-widget-content tc">
-            <span title="啊手动阀手动阀" class="gg_preview">固定</span>
-        </td>
-        <td class="ui-widget-content tc">-</td>
-        <td class="ui-widget-content tc">-</td>
-        <td class="ui-widget-content plr">
-            <span title="默认广告分类">默认广告分类</span>
-        </td>
-        <td class="ui-widget-content plr">
-            <span title="默认广告分组">默认广告分组</span>
-        </td>
-    </tr>
-    <tr>
-        <td class="ui-widget-content tc">
-            <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160822105539 / 9" value="20160822105539 / 9" role="button">
-                <span class="ui-button-text">选择</span>
-            </button>
-        </td>
-        <td class="ui-widget-content tc">9</td>
-        <td class="ui-widget-content plr">
-            <a href="gg_preview.php?id=9" target="_blank" class="gg_source" title="啊啊大水法大水法地方<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-                <img src=&quot;http://127.0.0.1/niuXams/upload/20160822105536.jpeg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;461&quot; height=&quot;300&quot; />    
-            </a>
-            ">创建于2016-08-22 10:55:29
-        </a>
-    </td>
-    <td class="ui-widget-content tc">
-        <a href="gg_edit.php?id=9" target="_blank" title="创建于2016-08-22 10:55:29">修改</a>
-    </td>
-    <td class="ui-widget-content tc">
-        <span title="啊啊大水法大水法地方<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-            <img src=&quot;http://127.0.0.1/niuXams/upload/20160822105536.jpeg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;461&quot; height=&quot;300&quot; />    
-        </a>
-        " class="gg_preview">固定
-    </span>
-    </td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分类">默认广告分类</span>
-    </td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分组">默认广告分组</span>
-    </td>
-    </tr>
-    <tr>
-    <td class="ui-widget-content tc">
-    <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160822105347 / 8" value="20160822105347 / 8" role="button">
-        <span class="ui-button-text">选择</span>
-    </button>
-    </td>
-    <td class="ui-widget-content tc">8</td>
-    <td class="ui-widget-content plr">
-    <a href="gg_preview.php?id=8" target="_blank" class="gg_source" title="啊手动阀手动阀<a href=&quot;http://&quot; target=&quot;_blank&quot; style=&quot;font-size: 1em;&quot;>阿斯顿发射点</a>
-    ">创建于2016-08-22 10:51:36
-    </a>
-    </td>
-    <td class="ui-widget-content tc">
-    <a href="gg_edit.php?id=8" target="_blank" title="创建于2016-08-22 10:51:36">修改</a>
-    </td>
-    <td class="ui-widget-content tc">
-    <span title="啊手动阀手动阀<a href=&quot;http://&quot; target=&quot;_blank&quot; style=&quot;font-size: 1em;&quot;>阿斯顿发射点</a>
-    " class="gg_preview">固定
-    </span>
-    </td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分类">默认广告分类</span>
-    </td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分组">默认广告分组</span>
-    </td>
-    </tr>
-    <tr>
-    <td class="ui-widget-content tc">
-    <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160818172303 / 7" value="20160818172303 / 7" role="button">
-    <span class="ui-button-text">选择</span>
-    </button>
-    </td>
-    <td class="ui-widget-content tc">7</td>
-    <td class="ui-widget-content plr">
-    <a href="gg_preview.php?id=7" target="_blank" class="gg_source" title="<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-    <img id=&quot;abcd&quot;  src=&quot;http://127.0.0.1/niuXams/upload/20160818172215.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;170&quot; height=&quot;111&quot; />    
-    </a>
-    <script>
-$(&quot;#abcd&quot;).click(function(){
-alert(2)})
-</script>
-    ">666666
-    </a>
-    </td>
-    <td class="ui-widget-content tc">
-    <a href="gg_edit.php?id=7" target="_blank" title="666666">修改</a>
-    </td>
-    <td class="ui-widget-content tc">
-    <span title="<a href=&quot;http://&quot; target=&quot;_blank&quot;>
-    <img id=&quot;abcd&quot;  src=&quot;http://127.0.0.1/niuXams/upload/20160818172215.jpg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;170&quot; height=&quot;111&quot; />    
-    </a>
-    <script>
-$(&quot;#abcd&quot;).click(function(){
-alert(2)})
-</script>
-    " class="gg_preview">固定
-    </span>
-    </td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分类">默认广告分类</span>
-    </td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分组">默认广告分组</span>
-    </td>
-    </tr>
-    <tr>
-    <td class="ui-widget-content tc">
-    <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160818164710 / 4" value="20160818164710 / 4" role="button">
-    <span class="ui-button-text">选择</span>
-    </button>
-    </td>
-    <td class="ui-widget-content tc">4</td>
-    <td class="ui-widget-content plr">
-    <a href="gg_preview.php?id=4" target="_blank" class="gg_source" title="<a href=&quot;http://www.baidu.com&quot; target=&quot;_blank&quot; style=&quot;font-size: 1em;&quot;>aaaaaa</a>
-    <a href=&quot;http://&quot; target=&quot;_blank&quot;>
-    <img src=&quot;http://127.0.0.1/niuXams/upload/20160818164649.jpeg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;461&quot; height=&quot;300&quot; />    
-    </a>
-    ">test
-    </a>
-    </td>
-    <td class="ui-widget-content tc">
-    <a href="gg_edit.php?id=4" target="_blank" title="test">修改</a>
-    </td>
-    <td class="ui-widget-content tc">
-    <span title="<a href=&quot;http://www.baidu.com&quot; target=&quot;_blank&quot; style=&quot;font-size: 1em;&quot;>aaaaaa</a>
-    <a href=&quot;http://&quot; target=&quot;_blank&quot;>
-    <img src=&quot;http://127.0.0.1/niuXams/upload/20160818164649.jpeg&quot; alt=&quot;&quot; border=&quot;0&quot; width=&quot;461&quot; height=&quot;300&quot; />    
-    </a>
-    " class="gg_preview">固定
-    </span>
-    </td>
-    <td class="ui-widget-content tc">800</td>
-    <td class="ui-widget-content tc">500</td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分类">默认广告分类</span>
-    </td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分组">默认广告分组</span>
-    </td>
-    </tr>
-    <tr>
-    <td class="ui-widget-content tc">
-    <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="20160817162748 / 3" value="20160817162748 / 3" role="button">
-    <span class="ui-button-text">选择</span>
-    </button>
-    </td>
-    <td class="ui-widget-content tc">3</td>
-    <td class="ui-widget-content plr">
-    <a href="gg_preview.php?id=3" target="_blank" class="gg_source" title="<a href=&quot;http://www.niuxsoft.com/&quot; target=&quot;_blank&quot; title=&quot;牛叉软件官网&quot; style=&quot;display:block; text-decoration:none; text-align:center; background-color:#09C; padding:0; margin:0; border:0; height:90px; width:100%;&quot;>
-    <h1 style=&quot;color:#FFF; font-size:32px; line-height:1.71em; padding:0; margin:0; border:0; text-shadow: 3px 3px 3px #FF0000; font-family: 微软雅黑, 黑体, 仿宋;&quot;>牛叉广告管理系统 NiuXams</h1>
-    <p style=&quot;color:#FFF; font-size:18px; padding:0 0 6px 0; margin:0; border:0; line-height:1.71em; text-shadow: 1px 1px 1px #FF0000; font-family: 微软雅黑, 黑体, 仿宋;&quot;>牛叉软件官方网站 http://www.niuxsoft.com</p>
-    </a>
-    ">创建于2016-08-17 16:24:23
-    </a>
-    </td>
-    <td class="ui-widget-content tc">
-    <a href="gg_edit.php?id=3" target="_blank" title="创建于2016-08-17 16:24:23">修改</a>
-    </td>
-    <td class="ui-widget-content tc">
-    <span title="<a href=&quot;http://www.niuxsoft.com/&quot; target=&quot;_blank&quot; title=&quot;牛叉软件官网&quot; style=&quot;display:block; text-decoration:none; text-align:center; background-color:#09C; padding:0; margin:0; border:0; height:90px; width:100%;&quot;>
-    <h1 style=&quot;color:#FFF; font-size:32px; line-height:1.71em; padding:0; margin:0; border:0; text-shadow: 3px 3px 3px #FF0000; font-family: 微软雅黑, 黑体, 仿宋;&quot;>牛叉广告管理系统 NiuXams</h1>
-    <p style=&quot;color:#FFF; font-size:18px; padding:0 0 6px 0; margin:0; border:0; line-height:1.71em; text-shadow: 1px 1px 1px #FF0000; font-family: 微软雅黑, 黑体, 仿宋;&quot;>牛叉软件官方网站 http://www.niuxsoft.com</p>
-    </a>
-    " class="gg_preview">固定
-    </span>
-    </td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content tc">-</td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分类">默认广告分类</span>
-    </td>
-    <td class="ui-widget-content plr">
-    <span title="默认广告分组">默认广告分组</span>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    <div class="ui-widget-content ui-corner-bottom tc" style="border-top-width:0; padding:.2em .2em; line-height: 1em;">
-    <select class="lei1 long" name="lei1" id="ui-id-2" style="display: none;">
-    <option value="0">所有广告</option>
-    <option value="1" selected="selected">默认广告分类</option>
-    </select>
-    <span class="ui-selectmenu-button ui-widget ui-state-default ui-corner-all" tabindex="0" id="ui-id-2-button" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-owns="ui-id-2-menu" aria-haspopup="true" style="width: 264.667px;">
-    <span class="ui-icon ui-icon-triangle-1-s"></span>
-    <span class="ui-selectmenu-text">默认广告分类</span>
-    </span>
-    <select class="zu1 long" name="zu1" id="ui-id-3" style="display: none;">
-    <option value="0">所有广告</option>
-    <option value="1" selected="selected">默认广告分组</option>
-    </select>
-    </div>
-    </div>
-    </div>
-    <div class="clear"></div>
+
+                            <td class="ui-widget-content plr">
+                                <span title="<%=advList[i]["catName"]%>
+                                    ">
+                                    <%=advList[i]["catName"]%></span>
+                            </td>
+                            <td class="ui-widget-content plr">
+                                <span title="advertisingBox_<%=advList[i]["boxId"]%>
+                                    ">advertisingBox_
+                                    <%=advList[i]["boxId"]%></span>
+                            </td>
+                            <td class="ui-widget-content plr" style="text-align:center">
+                                <span title="<%=advList[i]["time"]%>
+                                    ">
+                                    <%=advList[i]["time"]%></span>
+                            </td>
+                        </tr>
+                        <% } %></tbody>
+                </table>
+                <div class="ui-widget-content ui-corner-bottom tc" style="border-top-width:0; padding:.2em .2em; line-height: 1em;">
+                    <select class="selectmenu long" id="ggwBox" style="display: none;">
+                        <option value="all">所有</option>
+                        <% for(var i=0;i<categoryList1.length;i++){%>
+                        <option value="<%=categoryList1[i]['id']%>
+                            ">
+                            <%=categoryList1[i]['name']%></option>
+                        <% } %></select>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
     </div>
     <div class="ptb hd ui-widget-content"></div>
     <div class="plr ptb">
-    <h3 class="fl"></h3>
-    <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submit" role="button">
-    <span class="ui-button-text">完 成</span>
-    </button>
-    <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="reset" role="button">
-    <span class="ui-button-text">重 置</span>
-    </button>
-    <span class="tip clear"></span>
+        <h3 class="fl"></h3>
+        <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submitg" role="button">
+            <span class="ui-button-text">完 成</span>
+        </button>
     </div>
-    </form>
 </div>
+<div id="advertisingBox_6"></div>
+<div id="advertisingBox_7"></div>
+<script src="/javascripts/ads/ad1.js" type="text/javascript" charset="utf-8" ></script>
+<script src="/javascripts/layer/layer.js" type="text/javascript" charset="utf-8" ></script>
+<script src="/javascripts/app/addAdBox.js" type="text/javascript" charset="utf-8" async defer></script>
 <% include footer %>

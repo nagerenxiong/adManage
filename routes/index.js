@@ -5,6 +5,8 @@ var moment = require("moment");
 var multiparty = require('multiparty');
 var fs = require('fs');
 var util = require('util');
+var path = require('path');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id", function(rows) {
@@ -13,14 +15,26 @@ router.get('/', function(req, res, next) {
 		}
 		res.render('index', {
 			title: '首页',
-			advList:rows
+			advList: rows
 		});
 	})
 });
 router.get('/addAdBox', function(req, res, next) {
-	res.render('addAdBox', {
-		title: '添加广告位'
-	});
+	fun.query("select * from  category where type=2", function(rows) {
+		fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id", function(rows1) {
+			fun.query("select * from  category where type=1", function(rows2) {
+				for (var i = 0; i < rows1.length; i++) {
+					rows1[i]['time'] = moment(rows1[i]['time']).format('YYYY-MM-DD HH:mm:ss');
+				}
+				res.render('addAdBox', {
+					title: '添加广告位',
+					categoryList: rows,
+					advList: rows1,
+					categoryList1: rows2
+				});
+			})
+		})
+	})
 });
 router.get('/upload', function(req, res, next) {
 	res.render('upload', {
@@ -69,7 +83,7 @@ router.post('/upload', function(req, res, next) {
 	});
 });
 router.get('/addAd', function(req, res, next) {
-	fun.query("select * from  category", function(rows) {
+	fun.query("select * from  category where type=1", function(rows) {
 		fun.query("SELECT boxId FROM  adv  ORDER BY id DESC LIMIT 1 ", function(rows1) {
 			console.log(rows1)
 			var boxId = 1;
@@ -88,8 +102,9 @@ router.get('/addCategory', function(req, res, next) {
 		title: '添加分类'
 	});
 });
-router.get('/allCategory', function(req, res, next) {
-	fun.query("select * from  category", function(rows) {
+router.get('/allCategory/:type', function(req, res, next) {
+	var type = req.params['type'];
+	fun.query("select * from  category where type=" + type, function(rows) {
 		for (var i = 0; i < rows.length; i++) {
 			rows[i]['time'] = moment(rows[i]['time']).format('YYYY-MM-DD HH:mm:ss');
 		}
@@ -98,8 +113,9 @@ router.get('/allCategory', function(req, res, next) {
 			categoryList: rows
 		});
 	})
-
 });
+
+
 router.get('/addType', function(req, res, next) {
 	res.render('addType', {
 		title: '添加类型'
@@ -124,12 +140,35 @@ router.post('/api/addAd', function(req, res, next) {
 		}
 	})
 });
+router.post('/makeJs', function(req, res, next) {
+	console.log(11111);
+	var html = req.body.html;
+	var js = req.body.js;
+	var css = req.body.css;
+	var catId=req.body.catId;
+	var name=req.body.name;
+	var advIdList=req.body["advIdList[]"];
+	console.log(advIdList);
+	fun.query("SELECT adId FROM  adBox  ORDER BY id DESC LIMIT 1 ", function(rows1) {
+		var adId = 1;
+		if (rows1.length != 0)
+			adId = rows1[0].adId * 1 + 1;
+		var pathCur = path.resolve(__dirname, '../public/javascripts/');
+		fs.appendFile(pathCur + '/ads/ad'+adId+'.js', html, function(err) {
+			if (err) throw err;
+		});
+		var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
+		fun.query("insert into adBox(name,time,adId,catId,advIdList) values ('" + name + "','" + curTime + "','" + adId + "','" + catId + "','"+advIdList+"')", function(rows) {
+		   res.send(rows);
+		})
+	})
+})
 
 
 
 router.post('/api/addCategory', function(req, res, next) {
 	var name = req.body.name;
-	var type=req.body.type;
+	var type = req.body.type;
 	fun.query("select * from  category where name=('" + name + "')", function(rows) {
 		if (rows.length > 0) {
 			res.send("2");

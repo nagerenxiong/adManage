@@ -1,0 +1,1 @@
+jQuery(document).ready(function($) {$("#advertisingBox_5").html('asdfasdf');$("#advertisingBox_6").html('233');})

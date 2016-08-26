@@ -1,0 +1,1 @@
+jQuery(document).ready(function($) {$("#advertisingBox_6").html('233');$("#advertisingBox_7").html('3343434<a href="http://" target="_blank" style="font-size:12px;">asdfasdf</a>');})
