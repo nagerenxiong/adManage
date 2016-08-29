@@ -36,6 +36,47 @@ router.get('/addAdBox', function(req, res, next) {
 		})
 	})
 });
+router.get('/allAdBox', function(req, res, next) {
+	fun.query("SELECT t1.*, t2.name catName FROM adBox t1 INNER JOIN category t2 ON t1.catId = t2.id", function(rows1) {
+		for (var i = 0; i < rows1.length; i++) {
+			rows1[i]['time'] = moment(rows1[i]['time']).format('YYYY-MM-DD HH:mm:ss');
+		}
+		res.render('allAdBox', {
+			title: '所有广告',
+			adBoxList: rows1
+		});
+	})
+});
+router.get('/editAdBox/:id', function(req, res, next) {
+	var id = req.params['id'];
+	fun.query("select * from  adbox where id=" + id, function(rows3) {
+		var advIdList = rows3[0]["advIdList"];
+		fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id where t1.id in (" + advIdList + ")", function(rows5) {
+			fun.query("select * from  category where type=2", function(rows) {
+				fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id", function(rows1) {
+					fun.query("select * from  category where type=1", function(rows2) {
+						for (var i = 0; i < rows1.length; i++) {
+							rows1[i]['time'] = moment(rows1[i]['time']).format('YYYY-MM-DD HH:mm:ss');
+						}
+						for (var i = 0; i < rows5.length; i++) {
+							rows5[i]['time'] = moment(rows5[i]['time']).format('YYYY-MM-DD HH:mm:ss');
+						}
+						res.render('addAdBox', {
+							title: '添加广告位',
+							categoryList: rows,
+							advList: rows1,
+							categoryList1: rows2,
+							adbox: rows3,
+							curAdvList: rows5,
+							id:id
+						});
+					})
+				})
+			})
+		})
+	})
+});
+
 router.get('/upload', function(req, res, next) {
 	res.render('upload', {
 		files: false
@@ -143,27 +184,41 @@ router.post('/api/addAd', function(req, res, next) {
 router.post('/makeJs', function(req, res, next) {
 	console.log(11111);
 	var html = req.body.html;
-	var js = req.body.js;
-	var css = req.body.css;
-	var catId=req.body.catId;
-	var name=req.body.name;
-	var advIdList=req.body["advIdList[]"];
+	var catId = req.body.catId;
+	var name = req.body.name;
+	var advIdList = req.body["advIdList[]"];
 	console.log(advIdList);
 	fun.query("SELECT adId FROM  adBox  ORDER BY id DESC LIMIT 1 ", function(rows1) {
 		var adId = 1;
 		if (rows1.length != 0)
 			adId = rows1[0].adId * 1 + 1;
 		var pathCur = path.resolve(__dirname, '../public/javascripts/');
-		fs.appendFile(pathCur + '/ads/ad'+adId+'.js', html, function(err) {
+		fs.appendFile(pathCur + '/ads/ad' + adId + '.js', html, function(err) {
 			if (err) throw err;
 		});
 		var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
-		fun.query("insert into adBox(name,time,adId,catId,advIdList) values ('" + name + "','" + curTime + "','" + adId + "','" + catId + "','"+advIdList+"')", function(rows) {
-		   res.send(rows);
+		fun.query("insert into adBox(name,time,adId,catId,advIdList) values ('" + name + "','" + curTime + "','" + adId + "','" + catId + "','" + advIdList + "')", function(rows) {
+			res.send(rows);
 		})
 	})
 })
+router.post('/updateJs', function(req, res, next) {
+	console.log(222222);
+	var html = req.body.html;
+	var catId = req.body.catId;
+	var name = req.body.name;
+	var advIdList = req.body["advIdList[]"];
+	var id=req.body.id;
+	// var pathCur = path.resolve(__dirname, '../public/javascripts/');
+	// fs.appendFile(pathCur + '/ads/ad' + adId + '.js', html, function(err) {
+	// 	if (err) throw err;
+	// });
+	var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
+	fun.query("update adBox set name='"+name+"',advIdList='"+advIdList+"',time='"+curTime+"',catId='"+catId+"' where id="+id, function(rows) {
+		res.send(rows);
+	})
 
+})
 
 
 router.post('/api/addCategory', function(req, res, next) {

@@ -1,0 +1,132 @@
+<% include header %>
+<style>
+    .nav{
+        margin: .4em 0;
+        padding: .7em .3em .3em .7em;
+    }
+    .nav select{
+        width: 9.4em;
+    }
+    .desc,.searchdiv{
+        margin-top: .1em;
+    }
+    .search{
+        width: 10em;
+        padding: .48em .5em;
+    }
+    .fenye{
+        padding-left: .4em;
+    }
+    .fenye a,.fenye span,.fenye input{
+        margin-left: 1px;
+        padding: .48em 2px;
+    }
+    .fenye a,.fenye span{
+        display: inline-block;
+        text-align: center;
+        min-width: 1.3em;
+    }
+    .limit{
+        width: 1.4em;
+    }
+    .page{
+        width: 1.4em;
+    }
+
+    .list{
+        padding:.2em;
+        margin-top: 1em;
+    }
+    .list table th{
+        border-width:0px 1px 0px 0px;
+        font-size:1.2em;
+        line-height:2em;
+    }
+    .list table td{
+        border-width:0px 1px 1px 0px;
+        font-size: 1em;
+        line-height: 1.8em;
+        overflow: hidden;
+    }
+
+    .ui-tooltip {
+        max-width: 1200px;
+        word-break: break-all;
+    }
+
+    #del_gg{
+        top: .5em;
+        left: 120px;
+    }
+    #del_gg_back{
+        top: .5em;
+        left: 120px;
+    }
+    #del_gg_real{
+        top: .5em;
+        left: 220px;
+    }
+    input{vertical-align: middle;}
+    .category_name,.categoryLayer{text-align: center;}
+    .categoryLayer .layui-layer-content{display: table;width: 100%;}
+    .categoryLayer .categoryNameBox{display: table-cell;vertical-align: middle;}
+    #categoryName{font-size: 1em; padding: .6em;width: 25em}
+    .categoryLayer .categoryNameBox button{border: 1px solid #77d5f7; background: #0078ae url("/images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x; font-weight: normal; color: #fff; vertical-align: top;}
+    .categoryLayer .categoryNameBox p{padding: 2em;}
+</style>
+<div class="fullScreen">
+	<div class="ptb hd rePos ui-widget-content">
+		<button class="button absPos ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="del_gg" role="button">
+			<span class="ui-button-text">删除广告位</span>
+		</button>
+		<h2 class="">广告位列表</h2>
+	</div>
+	<div class="list ui-widget-content ui-corner-all">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ui-widget-content categoryTable" >
+			<tbody>
+				<tr>
+					<th class="ui-widget-header" scope="col" style="width: 1em;">
+						<input type="checkbox" class="check_all" ></th>
+					<th class="ui-widget-header" scope="col">
+						<a href="javascript:void(0)" class="title" >广告名称</a>
+					</th>
+                    <th class="ui-widget-header" scope="col">
+                    <a href="/editAdBox" title="">修改</a>
+                    </th>
+					<th class="ui-widget-header" scope="col" style="width: 10em;">所属分类</th>
+					<th class="ui-widget-header" scope="col" style="width: 10em;"><a href="javascript:void(0)">获取代码</a></th>
+					<th class="ui-widget-header" scope="col" style="width: 20em;">
+						<a href="javascript:void(0)" class="time" >最后修改时间</a>
+					</th>
+				</tr>
+                <% for(var i=0;i<adBoxList.length;i++) {%>
+                <tr data-id="<%=adBoxList[i]["id"]%>">
+                    <td class="ui-widget-content tc">
+                        <input type="checkbox" class="check_id" value="<%=adBoxList[i]["id"]%>"></td>
+                    <td class="ui-widget-content plr category_name"><%=adBoxList[i]["name"]%></td>
+                    <td class="ui-widget-content tc">
+                        <a href="/editAdBox/<%=adBoxList[i]["id"]%>" title="">修改</a>
+                    </td>
+                    <td class="ui-widget-content tc">
+                        <%=adBoxList[i]["catName"]%>
+                    </td>
+                    <td class="ui-widget-content tc">
+                        <a href="javascript:void(0)" class="getCodeBtn" data-adId="<%=adBoxList[i]["adId"]%>">获取代码</a>
+                    </td>
+                    <td class="ui-widget-content tc">
+                        <%=adBoxList[i]["time"]%>
+                    </td>
+                </tr>
+                <% } %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div id="tip" style="padding:20px;display:none;">
+    <p>复制此代码到页面相应广告位置即可播放广告</p>
+    <textarea id="tipTxt" style="width:100%;height: 100px;resize: none;margin-top:20px;">
+    </textarea>
+</div>
+<script src="/javascripts/layer/layer.js" type="text/javascript" charset="utf-8" ></script>
+<script src="/javascripts/app/allAdBox.js" type="text/javascript" charset="utf-8"></script>
+<% include footer %>

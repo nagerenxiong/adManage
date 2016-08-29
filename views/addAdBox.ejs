@@ -33,7 +33,11 @@
     <h2 class="ptb hd ui-widget-content">新建广告位</h2>
     <div class="plr ptb">
         <h3 class="fl">广告位名称</h3>
+        <% if(typeof adbox !== 'undefined' ){%>
+        <input class="text large fl ui-widget-content ui-corner-all" id="ggwTitle" value="<%=adbox[0]["name"]%>" placeholder="不超过80个汉字">
+        <% }else{ %>
         <input class="text large fl ui-widget-content ui-corner-all" id="ggwTitle" value="" placeholder="不超过80个汉字">
+        <% } %>
         <span class="tip clear">* 不超过80个汉字</span>
     </div>
     <div class="plr ptb">
@@ -41,9 +45,16 @@
         <p class="fl">
             <select class="selectmenu long" id="ggwLei" style="display: none;">
                 <% for(var i=0;i<categoryList.length;i++){%>
-                <option value="<%=categoryList[i]['id']%>
-                    ">
+                 <%  if(typeof adbox !== 'undefined' ){ if(adbox[0]["catId"]==categoryList[i]['id']){  %>
+                   <option selected value="<%=categoryList[i]['id']%>">
                     <%=categoryList[i]['name']%></option>
+                 <% }else{ %>
+                  <option  value="<%=categoryList[i]['id']%> ">
+                    <%=categoryList[i]['name']%></option>
+                 <% } }else {%>
+                    <option  value="<%=categoryList[i]['id']%> ">
+                    <%=categoryList[i]['name']%></option>
+                 <%} %>
                 <% } %></select>
         </p>
         <span class="tip clear">&nbsp;</span>
@@ -61,6 +72,35 @@
                         <th class="ui-widget-header" scope="col" style="width: 12em;">盒子ID</th>
                         <th class="ui-widget-header" scope="col" style="width: 8em;">最后修改时间</th>
                     </tr>
+                    <%if(typeof curAdvList !== 'undefined' ){ %>
+                    <% for(var i=0;i<curAdvList.length;i++) {%>
+                        <tr data-id="33 " data-catid="62 " style="display: table-row;">
+                            <td class="ui-widget-content tc">
+                                <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only delselectgg ui-state-hover" role="button">
+                                    <span class="ui-button-text">
+                                        <span class="ui-button-text">移除</span>
+                                    </span>
+                                </button>
+                            </td>
+                            <td class="ui-widget-content tc"><%=curAdvList[i]["id"]%></td>
+                            <td class="ui-widget-content plr">
+                                <%=curAdvList[i]["name"]%>
+                            <div style="display:none" class="html"><%=curAdvList[i]["html"]%></div>
+                            <div style="display:none" class="js"><%=curAdvList[i]["js"]%></div>
+                            <div style="display:none" class="css"><%=curAdvList[i]["css"]%></div>
+                        </td>
+
+                        <td class="ui-widget-content plr">
+                           <%=curAdvList[i]["catName"]%>
+                        </td>
+                        <td class="ui-widget-content plr">
+                             advertisingBox_<%=curAdvList[i]["boxId"]%>
+                        </td>
+                        <td class="ui-widget-content plr" style="text-align:center">
+                           <%=curAdvList[i]["time"]%>
+                        </td>
+                        </tr>
+                    <% } }%>
                 </tbody>
             </table>
         </div>
@@ -138,14 +178,19 @@
     <div class="ptb hd ui-widget-content"></div>
     <div class="plr ptb">
         <h3 class="fl"></h3>
-        <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submitg" role="button">
+        <% if(typeof adbox !== 'undefined' ){%>
+        <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="updateg" role="button">
             <span class="ui-button-text">完 成</span>
         </button>
+        <input type="hidden" id="id" name="" value="<%=id%>">
+        <%}else{%>
+          <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submitg" role="button">
+              <span class="ui-button-text">完 成</span>
+          </button>
+        <%}%>
     </div>
 </div>
-<div id="advertisingBox_6"></div>
-<div id="advertisingBox_7"></div>
-<script src="/javascripts/ads/ad1.js" type="text/javascript" charset="utf-8" ></script>
+<div id="advertisingBox_1"></div>
 <script src="/javascripts/layer/layer.js" type="text/javascript" charset="utf-8" ></script>
 <script src="/javascripts/app/addAdBox.js" type="text/javascript" charset="utf-8" async defer></script>
 <% include footer %>

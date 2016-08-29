@@ -45,7 +45,7 @@ gulp.task('less', function() {
 
 gulp.task('browser-sync',function () {
   browserSync.init(null, {
-    proxy: 'http://localhost:3000',
+    proxy: 'http://localhost:3001',
     files: ['public/**/*.*', 'views/**/*.*'],
     browser: 'google chrome',
     notify: false,

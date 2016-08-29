@@ -21,7 +21,7 @@ $("#submit").click(function() {
 		},
 		success: function(result) {
 			if (result.affectedRows== 1) {
-				layer.tips('添加类型成功', '#submit', {
+				layer.tips('添加广告成功', '#submit', {
 					tips: [1, '#3595CC'],
 					time: 3000
 				});
@@ -30,13 +30,13 @@ $("#submit").click(function() {
 				},3500)
 			}else if(result=="2")
 			{
-				layer.tips('已经存在的类型', '#submit', {
+				layer.tips('已经存在的广告', '#submit', {
 					tips: [1, 'red'],
 					time: 3000
 				});
 			}
 			else  {
-				layer.tips('添加类型失败', '#submit', {
+				layer.tips('添加广告失败', '#submit', {
 					tips: [1, 'red'],
 					time: 3000
 				});
