@@ -209,10 +209,10 @@ router.post('/updateJs', function(req, res, next) {
 	var name = req.body.name;
 	var advIdList = req.body["advIdList[]"];
 	var id=req.body.id;
-	// var pathCur = path.resolve(__dirname, '../public/javascripts/');
-	// fs.appendFile(pathCur + '/ads/ad' + adId + '.js', html, function(err) {
-	// 	if (err) throw err;
-	// });
+	var pathCur = path.resolve(__dirname, '../public/javascripts/');
+	fs.appendFile(pathCur + '/ads/ad' + adId + '.js', html, function(err) {
+		if (err) throw err;
+	});
 	var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
 	fun.query("update adBox set name='"+name+"',advIdList='"+advIdList+"',time='"+curTime+"',catId='"+catId+"' where id="+id, function(rows) {
 		res.send(rows);
