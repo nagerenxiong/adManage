@@ -29,7 +29,7 @@ function page_(currentPage) {
 		for (var i = 0; i < list.length; i++) {
 			var htmlStr='<tr data-id="'+list[i]['id']+'">\
                     <td class="ui-widget-content tc">\
-                        <input type="checkbox" class="check_id" value="'+list[i]['id']+'"></td>\
+                        <input type="checkbox" class="check_id" value="'+list[i]['id']+'" data-adId="'+list[i]['adId']+'"></td>\
                     <td class="ui-widget-content plr category_name">'+list[i]['name']+'</td>\
                     <td class="ui-widget-content tc">\
                         <a href="/editAdBox/'+list[i]['id']+'" title="">修改</a>\
@@ -61,3 +61,38 @@ function page_(currentPage) {
 	});
 };
 page_(1);
+$("#del_gg").click(function() {
+	var idList = [];
+	var adIdList=[];
+	$(".check_id").each(function(index, el) {
+		if ($(this).prop('checked')){
+			idList.push($(this).val());
+			adIdList.push($(this).attr('data-adid'));
+		}
+	})
+	$.ajax({
+			url: '/api/deleteAdBox',
+			type: 'post',
+			data: {
+				idList: idList,
+				adIdList:adIdList
+			}
+		})
+		.done(function(result) {
+			console.log(result);
+			if (result.serverStatus == 2) {
+				$(".check_id").each(function(index, el) {
+					for (var i = 0; i < idList.length; i++) {
+						if ($(el).val() == idList[i])
+							$(el).parent().parent().remove();
+					}
+				})
+				layer.msg('删除广告位成功');
+			} else {
+				layer.msg('删除广告位失败');
+			}
+		})
+		.fail(function() {
+			layer.msg('删除广告位失败');
+		})
+})

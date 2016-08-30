@@ -1,1 +1,0 @@
-jQuery(document).ready(function($) {$("#advertisingBox_7").html('iiiiiiiiiiiiiiii');$("#advertisingBox_4").html('<a href="http://" target="_blank" style="font-size:12px;">wwww</a>');$("body").append('<script type="text/javascript"></script>');$("head").append("<style type='text/css'></style>");})

@@ -58,9 +58,9 @@ router.get('/addAdBox', function(req, res, next) {
 	})
 });
 router.get('/allAdBox', function(req, res, next) {
-		res.render('allAdBox', {
-			title: '所有广告'
-		});
+	res.render('allAdBox', {
+		title: '所有广告'
+	});
 });
 
 router.get('/allAdBox/page/:page', function(req, res, next) {
@@ -182,18 +182,18 @@ router.get('/addAd', function(req, res, next) {
 });
 
 
-function User(user){
-    this.name = user.name;
-    this.pwd = user.pwd;
+function User(user) {
+	this.name = user.name;
+	this.pwd = user.pwd;
 };
 
 //几个路由共用，所以为静态方法
-User.prototype.get = function (username, callback) {
-    var sql = 'SELECT * FROM user WHERE name="'+username+'"';
-    fun.query(sql,  function(rows) {
-        var row = rows ? rows[0] : [];
-        callback(row);
-    });
+User.prototype.get = function(username, callback) {
+	var sql = 'SELECT * FROM user WHERE name="' + username + '"';
+	fun.query(sql, function(rows) {
+		var row = rows ? rows[0] : [];
+		callback(row);
+	});
 };
 
 
@@ -209,7 +209,7 @@ router.post('/login', function(req, res) {
 	// var md5 = crypto.createHash('md5');
 	// var	password = md5.update(req.body.password).digest('base64');
 	var pwd = req.body.pwd;
-	var name=req.body.name;
+	var name = req.body.name;
 	var newUser = new User({
 		name: name,
 		pwd: pwd
@@ -217,7 +217,7 @@ router.post('/login', function(req, res) {
 	console.log(1111111);
 	newUser.get(name, function(user) {
 		console.log(pwd)
-	console.log(name)
+		console.log(name)
 		if (!user) {
 			return res.redirect('/login');
 		}
@@ -230,10 +230,10 @@ router.post('/login', function(req, res) {
 });
 
 router.get('/logout', checkLogin);
-    router.get('/logout', function(req, res){
-        req.session.user = null;
-        res.redirect('/login');
-	});
+router.get('/logout', function(req, res) {
+	req.session.user = null;
+	res.redirect('/login');
+});
 
 function checkLogin(req, res, next) {
 	console.log(11111111)
@@ -245,18 +245,12 @@ function checkLogin(req, res, next) {
 
 function checkNotLogin(req, res, next) {
 	if (req.session.user) {
-		console.log(req.session.user+"ggggggg")
+		console.log(req.session.user + "ggggggg")
 		return res.redirect('/');
 	}
 	console.log(22222222)
 	next();
 }
-
-
-
-
-
-
 
 
 
@@ -419,6 +413,24 @@ router.post('/api/deleteAdv', function(req, res, next) {
 		res.send(rows);
 	})
 });
+router.post('/api/deleteAdBox', function(req, res, next) {
+	var idList = req.body['idList[]'];
+	var adIdList = req.body['adIdList[]'];
+	var pathCur = path.resolve(__dirname, '../public/javascripts/');
+	console.log(adIdList);
+	var i = 0;
+	if (typeof(idList) == "string")
+		idList = idList;
+	else
+		idList = idList.join(',');
+	fun.query("delete from adbox  where id in (" + idList + ") ", function(rows) {
+		for (var i = 0; i < adIdList.length; i++) {
+			fs.unlinkSync(pathCur + '/ads/ad' + adIdList[i] + '.js');
+		}
+		res.send(rows);
+	})
+});
+
 
 
 module.exports = router;

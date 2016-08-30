@@ -1,1 +1,0 @@
-jQuery(document).ready(function($) {$("#advertisingBox_6").html('ppppppppppppp');$("#advertisingBox_5").html('gggggggg');$("#advertisingBox_14").html('asdfasdf');$("body").append('<script type="text/javascript"></script>');$("head").append("<style type='text/css'></style>");})

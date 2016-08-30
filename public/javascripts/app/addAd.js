@@ -94,8 +94,6 @@ $("#update").click(function() {
 	})
 })
 
-
-
 $("#imgGG").click(function(){
 	layer.open({
 	  type: 1,
