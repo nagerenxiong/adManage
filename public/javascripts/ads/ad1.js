@@ -1,0 +1,1 @@
+jQuery(document).ready(function($) {$("#").html('<a href="http://" target="_blank" style="font-size:12px;">dadsaf</a>');$("#").html('ppppppppppppp');$("body").append('<script type="text/javascript"></script>');$("head").append("<style type='text/css'></style>");})

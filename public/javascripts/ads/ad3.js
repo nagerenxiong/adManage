@@ -1,0 +1,1 @@
+jQuery(document).ready(function($) {$("#").html('gggggggg');$("#").html('asdf');$("body").append('<script type="text/javascript"></script>');$("head").append("<style type='text/css'></style>");})
