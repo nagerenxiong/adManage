@@ -1,0 +1,1 @@
+jQuery(document).ready(function($) {$("#advertisingBox_15").html('asdfasdf');$("body").append('<script type="text/javascript"></script>');$("head").append("<style type='text/css'></style>");})

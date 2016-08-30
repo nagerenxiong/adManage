@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/ui.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/all.min.css">
+	<script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8" ></script>
+	<title><%=title%></title>
+</head>
+<body>
+	<style>
+    fieldset {padding:0;border:0;margin-top:25px;}
+    label {display:block;}
+    input.text {margin-bottom:12px;width:95%;padding:.4em;}
+    #autoLogin {float:left;margin-right:5px;margin-top:3px;}
+    #yzm {display:none;}
+    input.yzmIn {width:35%;padding:.4em;}
+</style>
+	<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="dialog-form" aria-labelledby="ui-id-2" style="position: absolute; height: auto; width: 350px; top: 334px; left: 781.5px; display: block;">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle">
+			<span id="ui-id-2" class="ui-dialog-title">欢迎使用&nbsp;&nbsp;广告管理系统</span>
+
+		</div>
+		<div id="dialog-form" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 35px; max-height: none; height: auto;">
+			<p class="mtb">后台登陆: 建议使用较新的浏览器.</p>
+			<form action="/login" method="post" accept-charset="utf-8" id="form">
+				<fieldset>
+					<label for="name">账 号：</label>
+					<input name="name" placeholder="登录账号：3~20位！没有特殊字符" class="text ui-widget-content ui-corner-all">
+					<label for="pwd">密 码：</label>
+					<input name="pwd" type="password" placeholder="登录密码：6~40位！" class="text ui-widget-content ui-corner-all">
+					<!-- <label for="autoLogin">
+					<input id="autoLogin" type="checkbox">十天内免登录</label>				-->
+			</fieldset>
+		</form>
+	</div>
+	<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+		<div class="ui-dialog-buttonset">
+			<button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" id="submit">
+				<span class="ui-button-text">登 陆</span>
+			</button>
+		<!-- 	<button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button">
+				<span class="ui-button-text">取 消</span>
+			</button> -->
+		</div>
+	</div>
+	<div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div>
+	<div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+	<div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+	<div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+	<div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+	<div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+	<div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+	<div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+</div>
+<script type="text/javascript">
+	$("#submit").click(function(){
+		$("#form").submit();
+	})
+</script>
+</body>
+</html>

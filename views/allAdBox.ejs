@@ -99,34 +99,19 @@
 						<a href="javascript:void(0)" class="time" >最后修改时间</a>
 					</th>
 				</tr>
-                <% for(var i=0;i<adBoxList.length;i++) {%>
-                <tr data-id="<%=adBoxList[i]["id"]%>">
-                    <td class="ui-widget-content tc">
-                        <input type="checkbox" class="check_id" value="<%=adBoxList[i]["id"]%>"></td>
-                    <td class="ui-widget-content plr category_name"><%=adBoxList[i]["name"]%></td>
-                    <td class="ui-widget-content tc">
-                        <a href="/editAdBox/<%=adBoxList[i]["id"]%>" title="">修改</a>
-                    </td>
-                    <td class="ui-widget-content tc">
-                        <%=adBoxList[i]["catName"]%>
-                    </td>
-                    <td class="ui-widget-content tc">
-                        <a href="javascript:void(0)" class="getCodeBtn" data-adId="<%=adBoxList[i]["adId"]%>">获取代码</a>
-                    </td>
-                    <td class="ui-widget-content tc">
-                        <%=adBoxList[i]["time"]%>
-                    </td>
-                </tr>
-                <% } %>
 			</tbody>
 		</table>
 	</div>
+    <div>
+        <div class="pagination" id="pagination" style="text-align: center;margin-top:20px;"></div>
+    </div>
 </div>
 <div id="tip" style="padding:20px;display:none;">
     <p>复制此代码到页面相应广告位置即可播放广告</p>
     <textarea id="tipTxt" style="width:100%;height: 100px;resize: none;margin-top:20px;">
     </textarea>
 </div>
+<script src="/javascripts/laypage/laypage.js"></script>
 <script src="/javascripts/layer/layer.js" type="text/javascript" charset="utf-8" ></script>
 <script src="/javascripts/app/allAdBox.js" type="text/javascript" charset="utf-8"></script>
 <% include footer %>

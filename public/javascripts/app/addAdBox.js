@@ -107,6 +107,7 @@ $("#updateg").click(function() {
 	var tipHtml = false;
 	var advIdList = [];
 	var id=$("#id").val();
+	var adId=$("#adId").val();
 	if (name == "") {
 		layer.tips('请输入广告位名', "#ggwTitle", {
 			tips: [1, 'red'],
@@ -144,6 +145,7 @@ $("#updateg").click(function() {
 				html: htmlStr,
 				name: name,
 				id:id,
+				adId:adId,
 				catId: $("#ggwLei").val(),
 				advIdList: advIdList
 			},

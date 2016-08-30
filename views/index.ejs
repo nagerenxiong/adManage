@@ -90,31 +90,22 @@
 					<th class="ui-widget-header" scope="col">
 						<a href="javascript:void(0)" class="title" >广告名称</a>
 					</th>
+                    <th class="ui-widget-header" scope="col">
+                        修改
+                    </th>
 					<th class="ui-widget-header" scope="col" style="width: 10em;">所属分类</th>
 					<th class="ui-widget-header" scope="col" style="width: 10em;">盒子的ID值</th>
 					<th class="ui-widget-header" scope="col" style="width: 20em;">
 						<a href="javascript:void(0)" class="time" >最后修改时间</a>
 					</th>
 				</tr>
-				<% for(var i=0;i<advList.length;i++) {%>
-				<tr>
-					<td class="ui-widget-content tc">
-						<input type="checkbox" class="check_id" value="<%=advList[i]["id"]%>"></td>
-					<td class="ui-widget-content plr category_name"><%=advList[i]["name"]%></td>
-					<td class="ui-widget-content tc">
-						<a href="javascript:void(0)" class="updateCategory" title="<%=advList[i]["catName"]%>"><%=advList[i]["catName"]%></a>
-					</td>
-					<td class="ui-widget-content tc">
-						<%=advList[i]["boxId"]%>
-					</td>
-					<td class="ui-widget-content tc">
-						<span title="创建于<%=advList[i]["time"]%>"><%=advList[i]["time"]%></span>
-					</td>
-				</tr>
-				<% } %>
 			</tbody>
 		</table>
 	</div>
+    <div>
+        <div class="pagination" id="pagination" style="text-align: center;margin-top:20px;"></div>
+    </div>
 </div>
+<script src="/javascripts/laypage/laypage.js"></script>
 <script src="/javascripts/app/allAdv.js" type="text/javascript" charset="utf-8" ></script>
 <% include footer %>

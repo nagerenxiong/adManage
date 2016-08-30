@@ -44,6 +44,58 @@ $("#submit").click(function() {
 		}
 	})
 })
+$("#update").click(function() {
+	var catId=$("#ggLei").val();
+	var id=$("#id").val();
+	var name = $.trim($("#name").val());
+	if (name == "") {
+		layer.tips('请输入广告名称', '#submit', {
+					tips: [1, 'red'],
+					time: 3000
+				});
+		return;
+	}
+	$.ajax({
+		url: '/api/updateAd',
+		type: 'post',
+		data: {
+			name: name,
+			html:$("#html").val(),
+			js:$("#js").val(),
+			css:$("#css").val(),
+			catId:catId,
+			id:id
+		},
+		success: function(result) {
+			console.log(result.affectedRows);
+			debugger;
+			if (result.affectedRows==1) {
+				layer.tips('修改广告成功', '#update', {
+					tips: [1, '#3595CC'],
+					time: 3000
+				});
+				setTimeout(function(){
+				window.location.reload();
+				},3500)
+			}else if(result=="2")
+			{
+				layer.tips('已经存在的广告', '#update', {
+					tips: [1, 'red'],
+					time: 3000
+				});
+			}
+			else  {
+				layer.tips('修改广告失败', '#update', {
+					tips: [1, 'red'],
+					time: 3000
+				});
+			}
+		}
+	})
+})
+
+
+
 $("#imgGG").click(function(){
 	layer.open({
 	  type: 1,

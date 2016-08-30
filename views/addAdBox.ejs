@@ -76,11 +76,10 @@
                     <% for(var i=0;i<curAdvList.length;i++) {%>
                         <tr data-id="33 " data-catid="62 " style="display: table-row;">
                             <td class="ui-widget-content tc">
-                                <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only delselectgg ui-state-hover" role="button">
-                                    <span class="ui-button-text">
-                                        <span class="ui-button-text">移除</span>
-                                    </span>
-                                </button>
+                                <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only delselectgg" role="button">
+                                    <span class="ui-button-text">移除</span>
+                              
+                            </button>
                             </td>
                             <td class="ui-widget-content tc"><%=curAdvList[i]["id"]%></td>
                             <td class="ui-widget-content plr">
@@ -133,9 +132,7 @@
                             <td class="ui-widget-content tc">
                                 <%=advList[i]["id"]%></td>
                             <td class="ui-widget-content plr">
-                                <a href="/#" target="_blank" class="gg_source" title="<%=advList[i]["html"]%>
-                                    ">
-                                    <%=advList[i]["name"]%></a>
+                                    <%=advList[i]["name"]%>
                                 <div style="display:none" class="html">
                                     <%=advList[i]["html"]%></div>
                                 <div style="display:none" class="js">
@@ -145,19 +142,13 @@
                             </td>
 
                             <td class="ui-widget-content plr">
-                                <span title="<%=advList[i]["catName"]%>
-                                    ">
-                                    <%=advList[i]["catName"]%></span>
+                                    <%=advList[i]["catName"]%>
                             </td>
                             <td class="ui-widget-content plr">
-                                <span title="advertisingBox_<%=advList[i]["boxId"]%>
-                                    ">advertisingBox_
-                                    <%=advList[i]["boxId"]%></span>
+                               advertisingBox_<%=advList[i]["boxId"]%>
                             </td>
                             <td class="ui-widget-content plr" style="text-align:center">
-                                <span title="<%=advList[i]["time"]%>
-                                    ">
-                                    <%=advList[i]["time"]%></span>
+                                    <%=advList[i]["time"]%>
                             </td>
                         </tr>
                         <% } %></tbody>
@@ -183,6 +174,7 @@
             <span class="ui-button-text">完 成</span>
         </button>
         <input type="hidden" id="id" name="" value="<%=id%>">
+        <input type="hidden" id="adId" value="<%=adbox[0]["adId"]%>">
         <%}else{%>
           <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="submitg" role="button">
               <span class="ui-button-text">完 成</span>
