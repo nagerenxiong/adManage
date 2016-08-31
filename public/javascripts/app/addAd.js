@@ -14,9 +14,6 @@ $("#submit").click(function() {
 		data: {
 			name: name,
 			html:$("#html").val(),
-			js:$("#js").val(),
-			css:$("#css").val(),
-			boxId:$("#boxId").attr('data-boxId'),
 			catId:catId
 		},
 		success: function(result) {
@@ -61,8 +58,6 @@ $("#update").click(function() {
 		data: {
 			name: name,
 			html:$("#html").val(),
-			js:$("#js").val(),
-			css:$("#css").val(),
 			catId:catId,
 			id:id
 		},

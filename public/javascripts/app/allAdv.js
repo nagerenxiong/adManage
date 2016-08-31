@@ -13,6 +13,7 @@ $("#del_gg").click(function() {
 		if ($(this).prop('checked'))
 			idList.push($(this).val());
 	})
+	debugger;
 	$.ajax({
 			url: '/api/deleteAdv',
 			type: 'post',
@@ -58,9 +59,6 @@ function page_(currentPage) {
                     </td>\
 					<td class="ui-widget-content tc">\
 						'+list[i]["catName"]+'\
-					</td>\
-					<td class="ui-widget-content tc">\
-						'+list[i]["boxId"]+'\
 					</td>\
 					<td class="ui-widget-content tc">\
 						<span title="创建于'+list[i]["time"]+'">'+list[i]["time"]+'</span>\

@@ -1,1 +1,0 @@
-jQuery(document).ready(function($) {$("#").html('<a href="http://" target="_blank" style="font-size:12px;">asdfasdf</a>');$("#").html('asdfasdf');$("#").html('asdf');$("body").append('<script type="text/javascript">asdf</script>');$("head").append("<style type='text/css'>asdf</style>");})

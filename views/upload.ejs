@@ -26,8 +26,8 @@
         var uploadPath=$("#imgUrl").val();
         if(uploadPath!="false"){
         	uploadPath=uploadPath.replace(/public\\/g,"").replace(/\\/g,"/");
-		    $("#img").attr('src',"http://localhost:5000/"+uploadPath);
-    	    $("#imgUrl", window.parent.document).val("http://localhost:5000/"+uploadPath);
+		    $("#img").attr('src',"http://192.168.1.74:3001/"+uploadPath);
+    	    $("#imgUrl", window.parent.document).val("http://192.168.1.74:3001/"+uploadPath);
     	    setTimeout(function(){
 		    $("#imgW", window.parent.document).val(document.getElementById("img").width);
 		    $("#imgH", window.parent.document).val(document.getElementById("img").height);

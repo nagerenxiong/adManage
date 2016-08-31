@@ -69,7 +69,6 @@
                         <th class="ui-widget-header" scope="col" style="width: 4em;">编号</th>
                         <th class="ui-widget-header" scope="col" style="width: 18em;">广告名称（停留查看代码/点击预览）</th>
                         <th class="ui-widget-header" scope="col" style="width: 8em;">分类</th>
-                        <th class="ui-widget-header" scope="col" style="width: 12em;">盒子ID</th>
                         <th class="ui-widget-header" scope="col" style="width: 8em;">最后修改时间</th>
                     </tr>
                     <%if(typeof curAdvList !== 'undefined' ){ %>
@@ -78,7 +77,6 @@
                             <td class="ui-widget-content tc">
                                 <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only delselectgg" role="button">
                                     <span class="ui-button-text">移除</span>
-                              
                             </button>
                             </td>
                             <td class="ui-widget-content tc"><%=curAdvList[i]["id"]%></td>
@@ -91,9 +89,6 @@
 
                         <td class="ui-widget-content plr">
                            <%=curAdvList[i]["catName"]%>
-                        </td>
-                        <td class="ui-widget-content plr">
-                             advertisingBox_<%=curAdvList[i]["boxId"]%>
                         </td>
                         <td class="ui-widget-content plr" style="text-align:center">
                            <%=curAdvList[i]["time"]%>
@@ -116,7 +111,6 @@
                             <th class="ui-widget-header" scope="col" style="width: 4em;">编号</th>
                             <th class="ui-widget-header" scope="col" style="width: 18em;">广告名称（停留查看代码/点击预览）</th>
                             <th class="ui-widget-header" scope="col" style="width: 8em;">分类</th>
-                            <th class="ui-widget-header" scope="col" style="width: 12em;">盒子ID</th>
                             <th class="ui-widget-header" scope="col" style="width: 8em;">最后修改时间</th>
                         </tr>
                         <% for(var i=0;i<advList.length;i++) {%>
@@ -143,9 +137,6 @@
 
                             <td class="ui-widget-content plr">
                                     <%=advList[i]["catName"]%>
-                            </td>
-                            <td class="ui-widget-content plr">
-                               advertisingBox_<%=advList[i]["boxId"]%>
                             </td>
                             <td class="ui-widget-content plr" style="text-align:center">
                                     <%=advList[i]["time"]%>

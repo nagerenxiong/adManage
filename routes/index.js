@@ -92,8 +92,8 @@ router.get('/allAdBox/page/:page', function(req, res, next) {
 router.get('/editAdBox/:id', function(req, res, next) {
 	var id = req.params['id'];
 	fun.query("select * from  adbox where id=" + id, function(rows3) {
-		var advIdList = rows3[0]["advIdList"];
-		fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id where t1.id in (" + advIdList + ")", function(rows5) {
+		var advId = rows3[0]["advId"];
+		fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id where t1.id=" + advId + "", function(rows5) {
 			fun.query("select * from  category where type=2", function(rows) {
 				fun.query("SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id", function(rows1) {
 					fun.query("select * from  category where type=1", function(rows2) {
@@ -167,17 +167,10 @@ router.post('/upload', function(req, res, next) {
 });
 router.get('/addAd', function(req, res, next) {
 	fun.query("select * from  category where type=1", function(rows) {
-		fun.query("SELECT boxId FROM  adv  ORDER BY id DESC LIMIT 1 ", function(rows1) {
-			console.log(rows1)
-			var boxId = 1;
-			if (rows1.length != 0)
-				boxId = rows1[0].boxId * 1 + 1
-			res.render('addAd', {
-				title: '添加广告',
-				categoryList: rows,
-				boxId: boxId
-			});
-		})
+		res.render('addAd', {
+			title: '添加广告',
+			categoryList: rows
+		});
 	})
 });
 
@@ -256,13 +249,11 @@ function checkNotLogin(req, res, next) {
 
 router.post('/api/updateAd', function(req, res, next) {
 	var html = req.body.html;
-	var js = req.body.js;
-	var css = req.body.css;
 	var catId = req.body.catId;
 	var name = req.body.name;
 	var id = req.body.id;
 	var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
-	fun.query("update adv set name='" + name + "',html='" + html + "',css='" + css + "',js='" + js + "',time='" + curTime + "',catId='" + catId + "' where id=" + id, function(rows) {
+	fun.query("update adv set name='" + name + "',html='" + html + "',time='" + curTime + "',catId='" + catId + "' where id=" + id, function(rows) {
 		res.send(rows);
 	})
 
@@ -311,9 +302,6 @@ router.get('/addType', function(req, res, next) {
 router.post('/api/addAd', function(req, res, next) {
 	var name = req.body.name;
 	var html = req.body.html;
-	var js = req.body.js;
-	var css = req.body.css;
-	var boxId = req.body.boxId;
 	var catId = req.body.catId;
 	console.log(req.body)
 	fun.query("select * from  adv where name=('" + name + "')", function(rows) {
@@ -321,7 +309,7 @@ router.post('/api/addAd', function(req, res, next) {
 			res.send("2");
 		} else {
 			var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
-			fun.query("insert into adv(name,time,html,js,css,boxId,catId) values ('" + name + "','" + curTime + "','" + html + "','" + js + "','" + css + "','" + boxId + "','" + catId + "')", function(rows1) {
+			fun.query("insert into adv(name,time,html,catId) values ('" + name + "','" + curTime + "','" + html + "','" + catId + "')", function(rows1) {
 				res.send(rows1);
 			});
 		}
@@ -332,8 +320,7 @@ router.post('/makeJs', function(req, res, next) {
 	var html = req.body.html;
 	var catId = req.body.catId;
 	var name = req.body.name;
-	var advIdList = req.body["advIdList[]"];
-	console.log(advIdList);
+	var advId=req.body.advId;
 	fun.query("SELECT adId FROM  adBox  ORDER BY id DESC LIMIT 1 ", function(rows1) {
 		var adId = 1;
 		if (rows1.length != 0)
@@ -343,7 +330,7 @@ router.post('/makeJs', function(req, res, next) {
 			if (err) throw err;
 		});
 		var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
-		fun.query("insert into adBox(name,time,adId,catId,advIdList) values ('" + name + "','" + curTime + "','" + adId + "','" + catId + "','" + advIdList + "')", function(rows) {
+		fun.query("insert into adBox(name,time,adId,catId,advId) values ('" + name + "','" + curTime + "','" + adId + "','" + catId + "','" + advId + "')", function(rows) {
 			res.send(rows);
 		})
 	})
@@ -352,7 +339,7 @@ router.post('/updateJs', function(req, res, next) {
 	var html = req.body.html;
 	var catId = req.body.catId;
 	var name = req.body.name;
-	var advIdList = req.body["advIdList[]"];
+	var advId = req.body.advId;
 	var id = req.body.id;
 	var adId = req.body.adId;
 	var pathCur = path.resolve(__dirname, '../public/javascripts/');
@@ -360,7 +347,7 @@ router.post('/updateJs', function(req, res, next) {
 		if (err) throw err;
 	});
 	var curTime = moment().format('YYYY-MM-DD HH:mm:ss');
-	fun.query("update adBox set name='" + name + "',advIdList='" + advIdList + "',time='" + curTime + "',catId='" + catId + "' where id=" + id, function(rows) {
+	fun.query("update adBox set name='" + name + "',advId='" + advId + "',time='" + curTime + "',catId='" + catId + "' where id=" + id, function(rows) {
 		res.send(rows);
 	})
 
@@ -406,9 +393,10 @@ router.post('/api/deleteAdv', function(req, res, next) {
 	var idList = req.body['idList[]'];
 	console.log(typeof(idList));
 	if (typeof(idList) == "string")
-		idList = idList[0];
+		idList = idList;
 	else
 		idList = idList.join(',');
+	console.log(idList);
 	fun.query("delete from adv  where id in (" + idList + ") ", function(rows) {
 		res.send(rows);
 	})
@@ -431,6 +419,9 @@ router.post('/api/deleteAdBox', function(req, res, next) {
 	})
 });
 
-
+router.get('/look/:adId',function(req,res,next){
+	var adId=req.params['adId'];
+	res.render('look',{adId:adId});
+})
 
 module.exports = router;

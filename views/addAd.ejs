@@ -98,15 +98,6 @@ h3 {
              <% } %>
             <span class="tip clear">* 不超过80个汉字</span>
         </div>
-        <div class="plr ptb">
-            <h3 class="fl">广告盒子ID</h3>
-           <%  if(typeof boxId !== 'undefined' ){%>
-            <input type="text" id="boxId"  data-boxId="<%=boxId%>" value="advertisingBox_<%=boxId%>" placeholder="" disabled="" class="text  ui-widget-content ui-corner-all" style="width: 20em">
-            <%}else {%>
-             <input type="text" id="boxId"  data-boxId="<%=adv[0]['boxId']%>" value="advertisingBox_<%=adv[0]['boxId']%>" placeholder="" disabled="" class="text  ui-widget-content ui-corner-all" style="width: 20em">
-            <% } %>
-            <span class="tip clear">* 把外层ID设置成这里的值</span>
-        </div>
         <div class="plr ptb clear">
             <h3 class="fl">工具</h3>
             <button type="button" class="button ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="textGG" role="button">
@@ -126,34 +117,10 @@ h3 {
             <textarea class="text fl ui-widget-content ui-corner-all ggContent"  id="html" placeholder="不超过10000"><%=adv[0]['html']%></textarea>
             <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
         </div>
-        <div style="clear:both"></div>
-        <div class="plr ptb">
-            <h3 class="fl">广告js</h3>
-            <textarea class="text fl ui-widget-content ui-corner-all ggContent" id="js" placeholder="不超过10000"><%=adv[0]['js']%></textarea>
-            <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
-        </div>
-        <div style="clear:both"></div>
-        <div class="plr ptb">
-            <h3 class="fl">广告css</h3>
-            <textarea class="text fl ui-widget-content ui-corner-all ggContent" id="css" placeholder="不超过10000"><%=adv[0]['css']%></textarea>
-            <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
-        </div>
          <%}else {%>
          <div class="plr ptb">
-            <h3 class="fl">广告html</h3>
+            <h3 class="fl">广告代码</h3>
             <textarea class="text fl ui-widget-content ui-corner-all ggContent"  id="html" placeholder="不超过10000"></textarea>
-            <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
-        </div>
-        <div style="clear:both"></div>
-        <div class="plr ptb">
-            <h3 class="fl">广告js</h3>
-            <textarea class="text fl ui-widget-content ui-corner-all ggContent" id="js" placeholder="不超过10000"></textarea>
-            <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
-        </div>
-        <div style="clear:both"></div>
-        <div class="plr ptb">
-            <h3 class="fl">广告css</h3>
-            <textarea class="text fl ui-widget-content ui-corner-all ggContent" id="css" placeholder="不超过10000"></textarea>
             <span class="ui-icon ui-icon-circle-close rePos"  style="cursor: pointer;" title="清空"></span>
         </div>
          <%}%>
@@ -271,9 +238,6 @@ h3 {
         </div>
     </div>
 </div>
-
-
-
 <script src="/javascripts/layer/layer.js" type="text/javascript" charset="utf-8" ></script>
 <script src="/javascripts/app/addAd.js" type="text/javascript" charset="utf-8" ></script>
 <% include footer %>

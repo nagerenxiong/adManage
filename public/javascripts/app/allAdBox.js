@@ -30,7 +30,7 @@ function page_(currentPage) {
 			var htmlStr='<tr data-id="'+list[i]['id']+'">\
                     <td class="ui-widget-content tc">\
                         <input type="checkbox" class="check_id" value="'+list[i]['id']+'" data-adId="'+list[i]['adId']+'"></td>\
-                    <td class="ui-widget-content plr category_name">'+list[i]['name']+'</td>\
+                        <td class="ui-widget-content plr category_name"><a target="_blank" href="/look/'+list[i]['adId']+'">'+list[i]['name']+'</a></td>\
                     <td class="ui-widget-content tc">\
                         <a href="/editAdBox/'+list[i]['id']+'" title="">修改</a>\
                     </td>\
@@ -97,5 +97,3 @@ $("#del_gg").click(function() {
 		})
 })
 
-顶顶顶顶顶顶顶顶顶顶顶爱的色放
-啊手动阀手动阀打发士大夫
