@@ -6,6 +6,7 @@
     "start": "supervisor ./bin/www"
   },
   "dependencies": {
+    "ali-oss": "^4.4.4",
     "body-parser": "~1.15.1",
     "browser-sync": "^2.14.0",
     "cookie-parser": "~1.4.3",

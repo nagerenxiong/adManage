@@ -6,13 +6,38 @@ var multiparty = require('multiparty');
 var fs = require('fs');
 var util = require('util');
 var path = require('path');
-
+var co = require('co');
+var OSS = require('ali-oss');
 /* GET home page. */
 router.get('/', checkLogin);
 router.get('/', function(req, res, next) {
+	var co = require('co');
+	var OSS = require('ali-oss');
+	var client = new OSS({
+		region: 'oss-cn-hangzhou',
+		accessKeyId: 'gBYW8VJJnvidZx99',
+		accessKeySecret: 'ROifRaTjbmihDohE6TQRgVx6r7hlro',
+		Endpoint: 'http://oss-cn-hangzhou.aliyuncs.com',
+		bucket: 'ad-dyhjw'
+	});
+	co(function*() {
+		var result = yield client.get('object-key', '/dc_img02.jpg');
+		console.log(result);
+		res.render('index', {
+			title: '首页'
+		});
+	}).catch(function(err) {
+		console.log(err);
+		res.render('index', {
+			title: '首页'
+		});
+	});
 	res.render('index', {
 		title: '首页'
 	});
+
+
+
 });
 router.get('/index/:page', function(req, res, next) {
 	var page = (req.params['page'] - 1) * 10;
@@ -207,7 +232,6 @@ router.post('/login', function(req, res) {
 		name: name,
 		pwd: pwd
 	});
-	console.log(1111111);
 	newUser.get(name, function(user) {
 		console.log(pwd)
 		console.log(name)
@@ -229,7 +253,6 @@ router.get('/logout', function(req, res) {
 });
 
 function checkLogin(req, res, next) {
-	console.log(11111111)
 	if (!req.session.user) {
 		return res.redirect('/login');
 	}
@@ -320,7 +343,7 @@ router.post('/makeJs', function(req, res, next) {
 	var html = req.body.html;
 	var catId = req.body.catId;
 	var name = req.body.name;
-	var advId=req.body.advId;
+	var advId = req.body.advId;
 	fun.query("SELECT adId FROM  adBox  ORDER BY id DESC LIMIT 1 ", function(rows1) {
 		var adId = 1;
 		if (rows1.length != 0)
@@ -419,9 +442,11 @@ router.post('/api/deleteAdBox', function(req, res, next) {
 	})
 });
 
-router.get('/look/:adId',function(req,res,next){
-	var adId=req.params['adId'];
-	res.render('look',{adId:adId});
+router.get('/look/:adId', function(req, res, next) {
+	var adId = req.params['adId'];
+	res.render('look', {
+		adId: adId
+	});
 })
 
 module.exports = router;
