@@ -17,28 +17,45 @@ router.get('/', function(req, res, next) {
 		region: 'oss-cn-hangzhou',
 		accessKeyId: 'gBYW8VJJnvidZx99',
 		accessKeySecret: 'ROifRaTjbmihDohE6TQRgVx6r7hlro',
-		Endpoint: 'http://oss-cn-hangzhou.aliyuncs.com',
 		bucket: 'ad-dyhjw'
 	});
-	co(function*() {
-		var result = yield client.get('object-key', '/dc_img02.jpg');
-		console.log(result);
-		res.render('index', {
-			title: '首页'
-		});
-	}).catch(function(err) {
-		console.log(err);
-		res.render('index', {
-			title: '首页'
-		});
-	});
+	//上传
+	// co(function*() {
+	// 		// use 'chunked encoding'
+	// 		var stream = fs.createReadStream('/dc_img02.jpg');
+	// 		var result = yield client.putStream('tp.jpg', stream);
+	// 		console.log(result);
+	// 		res.end();
+	// 	})
+	// 	//查看
+	// co(function*() {
+	// 	// 不带任何参数，默认最多返回1000个文件
+	// 	var result = yield client.list();
+	// 	console.log(result);
+
+	// 	// 根据nextMarker继续列出文件
+	// 	if (result.isTruncated) {
+	// 		var result = yield client.list({
+	// 			marker: result.nextMarker
+	// 		});
+	// 	}
+
+	// 	// 列出前缀为'my-'的文件
+	// 	var result = yield client.list({
+	// 		prefix: '*'
+	// 	});
+	// 	console.log(result);
+
+	// }).catch(function(err) {
+	// 	console.log(err);
+	// });
 	res.render('index', {
-		title: '首页'
+		title: '所有广告'
 	});
-
-
-
 });
+
+
+
 router.get('/index/:page', function(req, res, next) {
 	var page = (req.params['page'] - 1) * 10;
 	sql = 'SELECT t1.*, t2.name catName FROM adv t1 INNER JOIN category t2 ON t1.catId = t2.id order by time desc limit ' + page + ',10';

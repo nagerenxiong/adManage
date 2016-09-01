@@ -126,3 +126,48 @@ $("#updateg").click(function() {
 			console.log("error");
 		})
 })
+function page_(currentPage) {
+	$.getJSON('/index/'+currentPage, {
+		page: currentPage || 1
+	}, function(res) {
+
+		console.log(res);
+		//显示分页
+		var list=res.list;
+		// $("#listgg tr:gt(0)").remove();
+		for (var i = 0; i < list.length; i++) {
+			var htmlStr='<tr data-id="'+list[i]["id"]+'" data-catid="'+list[i]["catId"]+'">\
+                            <td class="ui-widget-content tc">\
+                                <button type="button" class="button selectgg ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">\
+                                    <span class="ui-button-text">选择</span>\
+                                </span></button>\
+                            </td>\
+                            <td class="ui-widget-content tc">\
+                                '+list[i]["id"]+'</td>\
+                            <td class="ui-widget-content plr">\
+                                '+list[i]["html"]+'\
+                            </td>\
+                            <td class="ui-widget-content plr">\
+                                    '+list[i]["catName"]+'\
+                            </td>\
+                            <td class="ui-widget-content plr" style="text-align:center">\
+                                   '+list[i]["time"]+'\
+                            </td>\
+                        </tr>';
+			$(".categoryTable").append(htmlStr);
+		}
+		laypage({
+			cont: 'pagination', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+			pages: res.pages, //通过后台拿到的总页数
+			curr: currentPage || 1, //当前页
+			// skip: true, //是否开启跳页
+			skin: '#AF0000',
+			jump: function(obj, first) { //触发分页后的回调
+				if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
+					page_(obj.curr);
+				}
+			}
+		});
+	});
+};
+page_(1);

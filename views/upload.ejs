@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>上传</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 <link rel="stylesheet" type="text/css" href="/stylesheets/ui.css">
+    <meta charset="UTF-8">
+    <title>上传</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/ui.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
     <script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8" ></script>
 </head>
 <body>
-	<form enctype="multipart/form-data" method="POST" >
-        <input type="hidden" name="menu" value="upload">
-        <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
-        <input id="userFile" class="button ui-button ui-widget ui-state-default ui-corner-all" name="userfile" type="file" role="button" style="width:100%">
+    <form name=theform>
+        <input type="radio" name="myradio" value="local_name" checked=true/>
+        上传文件名字保持本地文件名字
+        <input type="radio" name="myradio" value="random_name" />
+        上传文件名字是随机文件名
+        <p style="display:none;">
+            上传到指定目录:
+            <input type="text" id='dirname' placeholder="如果不填，默认是上传到根目录" size=50></p>
     </form>
-    <img src="" id="img" alt=""  style="display:none">
-    <input type="hidden" id="imgUrl" value="<%=files%>">
-    <script>
-        $("#userFile").change(function () {
-            if ($(this).val()) {
-                $("form").submit();
-            }
-        });
-        var uploadPath=$("#imgUrl").val();
-        if(uploadPath!="false"){
-        	uploadPath=uploadPath.replace(/public\\/g,"").replace(/\\/g,"/");
-		    $("#img").attr('src',"http://192.168.1.74:3001/"+uploadPath);
-    	    $("#imgUrl", window.parent.document).val("http://192.168.1.74:3001/"+uploadPath);
-    	    setTimeout(function(){
-		    $("#imgW", window.parent.document).val(document.getElementById("img").width);
-		    $("#imgH", window.parent.document).val(document.getElementById("img").height);
-    	    },1000)
-        }
-</script>
+    <h4>您所选择的文件：</h4>
+    <div id="ossfile" style="height:20px;">你的浏览器不支持flash,Silverlight或者HTML5！</div>
+    <div id="container">
+        <a id="selectfiles" href="javascript:void(0);" class='button ui-button ui-widget ui-state-default ui-corner-all' style="display:inline-block;padding:5px">选择文件</a>
+        <a id="postfiles" href="javascript:void(0);" class='button ui-button ui-widget ui-state-default ui-corner-all' style="display:inline-block;padding:5px;">开始上传</a>
+    </div>
+    <pre id="console"></pre>
+    <img src="" alt="" id="img" style="display:none;">
+    <script type="text/javascript" src="/javascripts/lib/crypto1/crypto/crypto.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/crypto1/hmac/hmac.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/crypto1/sha1/sha1.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/base64.js"></script>
+    <script type="text/javascript" src="/javascripts/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
+    <script type="text/javascript" src="/javascripts/upload.js"></script>
 </body>
 </html>

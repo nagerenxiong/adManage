@@ -93,10 +93,11 @@ $("#imgGG").click(function(){
 	layer.open({
 	  type: 1,
 	  shift: 2,
-	  area: ['560px', '520px'],
+	  area: ['560px', '600px'],
 	  shadeClose: true, //开启遮罩关闭
 	  content: $('#photoDialog')
 	});
+	$("#imgUrl").val('');
 })
 $("#textGG").click(function(){
 	layer.open({
