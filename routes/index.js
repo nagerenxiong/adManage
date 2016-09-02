@@ -11,44 +11,6 @@ var OSS = require('ali-oss');
 /* GET home page. */
 router.get('/', checkLogin);
 router.get('/', function(req, res, next) {
-	var co = require('co');
-	var OSS = require('ali-oss');
-	var client = new OSS({
-		region: 'oss-cn-hangzhou',
-		accessKeyId: 'gBYW8VJJnvidZx99',
-		accessKeySecret: 'ROifRaTjbmihDohE6TQRgVx6r7hlro',
-		bucket: 'ad-dyhjw'
-	});
-	//上传
-	// co(function*() {
-	// 		// use 'chunked encoding'
-	// 		var stream = fs.createReadStream('/dc_img02.jpg');
-	// 		var result = yield client.putStream('tp.jpg', stream);
-	// 		console.log(result);
-	// 		res.end();
-	// 	})
-	// 	//查看
-	// co(function*() {
-	// 	// 不带任何参数，默认最多返回1000个文件
-	// 	var result = yield client.list();
-	// 	console.log(result);
-
-	// 	// 根据nextMarker继续列出文件
-	// 	if (result.isTruncated) {
-	// 		var result = yield client.list({
-	// 			marker: result.nextMarker
-	// 		});
-	// 	}
-
-	// 	// 列出前缀为'my-'的文件
-	// 	var result = yield client.list({
-	// 		prefix: '*'
-	// 	});
-	// 	console.log(result);
-
-	// }).catch(function(err) {
-	// 	console.log(err);
-	// });
 	res.render('index', {
 		title: '所有广告'
 	});
