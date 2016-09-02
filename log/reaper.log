@@ -1,0 +1,56 @@
+2016-09-01 15:52:19 ERROR Properties::load open file failed .\reaper.cfg
+2016-09-01 15:52:19 INFO Configuration::parseApplicationInfo IE setting will be initialized in async
+2016-09-01 15:52:19 INFO System::getMacAddressNew adapter: name=Realtek PCIe GBE Family Controller, mac=fcaa14cd900c, ifType=6
+2016-09-01 15:52:19 ERROR Failed to initialize COM libraray. Error code = 0x80010106
+2016-09-01 15:52:19 ERROR Failed to initialize COM libraray. Error code = 0x80010106
+2016-09-01 15:52:19 INFO TaskExecutor::init thread 1 threadId=[13284]
+2016-09-01 15:52:19 INFO TaskExecutor::init succeed. size=1
+2016-09-01 15:52:19 DEBUG TaskExecutor::_threadFunc[13284] enter
+2016-09-01 15:52:19 INFO TaskExecutor::init thread 1 threadId=[1380]
+2016-09-01 15:52:19 DEBUG TaskExecutor::_threadFunc[1380] enter
+2016-09-01 15:52:19 INFO TaskExecutor::init succeed. size=1
+2016-09-01 15:52:19 DEBUG await [1380] 0
+2016-09-01 15:52:19 DEBUG await [13284] 0
+2016-09-01 15:52:19 INFO AnalyticsTracker::trackInitial sdkVersion=10.1.34, isInit2=0
+2016-09-01 15:52:19 WARN ConfigurationUpdateTask::check server post url is null.
+2016-09-01 15:52:19 INFO FileStorage::open file .\log\lenovo_reaper.db7 created
+2016-09-01 15:52:19 INFO QueryPacTask::run finished url= timeuse(ms)=0
+2016-09-01 15:52:19 INFO FileStorage::open file .\log\lenovo_reaper.db7 open succeed
+2016-09-01 15:52:19 DEBUG FileStorage::readRecord read 0 characters
+2016-09-01 15:52:19 INFO FileEventDaoImpl::activeSession DB init
+2016-09-01 15:52:19 DEBUG FileStorage::position failed offset=0, tellg=-1, tellp=-1
+2016-09-01 15:52:19 DEBUG FileStorage::position again offset=0, tellg=0, tellp=0
+2016-09-01 15:52:19 DEBUG FileStorage::writeRecord write 70 characters
+2016-09-01 15:52:19 DEBUG await [1380] 0
+2016-09-01 15:52:19 WARN ConfigurationUpdateTask::check server post url is null.
+2016-09-01 15:52:19 DEBUG FileStorage::writeRecord write 107 characters
+2016-09-01 15:52:19 DEBUG FileStorage::writeRecord write 70 characters
+2016-09-01 15:52:19 DEBUG await [1380] 0
+2016-09-01 15:52:19 DEBUG FileStorage::writeRecord write 210 characters
+2016-09-01 15:52:19 DEBUG FileStorage::writeRecord write 70 characters
+2016-09-01 15:52:19 DEBUG await [13284] 0
+2016-09-01 15:52:19 DEBUG FileStorage::readRecord read 4096 characters
+2016-09-01 15:52:19 DEBUG FileStorage::readRecord read 209 characters
+2016-09-01 15:52:19 DEBUG HttpRequestHandler::postEvents enter listSize=2
+2016-09-01 15:52:19 INFO AnalyticsTracker::sendEvents no reported event.
+2016-09-01 15:52:19 WARN ConfigurationUpdateTask::check server post url is null.
+2016-09-01 15:52:19 DEBUG FileStorage::position failed offset=4096, tellg=-1, tellp=-1
+2016-09-01 15:52:19 DEBUG FileStorage::position again offset=4096, tellg=4096, tellp=4096
+2016-09-01 15:52:19 DEBUG FileStorage::readRecord read 4096 characters
+2016-09-01 15:52:19 DEBUG FileStorage::readRecord read 209 characters
+2016-09-01 15:52:19 DEBUG HttpRequestHandler::postEvents enter listSize=2
+2016-09-01 15:52:19 INFO AnalyticsTracker::sendEvents no reported event.
+2016-09-01 15:52:19 DEBUG await [1380] 0
+2016-09-01 15:52:21 INFO AnalyticsTracker::syncExit enter
+2016-09-01 15:52:21 DEBUG FileStorage::position failed offset=12288, tellg=-1, tellp=-1
+2016-09-01 15:52:21 DEBUG FileStorage::position again offset=12288, tellg=12288, tellp=12288
+2016-09-01 15:52:21 DEBUG FileStorage::writeRecord write 171 characters
+2016-09-01 15:52:21 DEBUG FileStorage::writeRecord write 70 characters
+2016-09-01 15:52:21 INFO AnalyticsTracker::syncExit returned after 0 ms
+2016-09-01 15:52:21 DEBUG TaskExecutor::notifyAllAndWait WaitForMultipleObjects returned
+2016-09-01 15:52:21 INFO TaskExecutor::notifyAllAndWait finished
+2016-09-01 15:52:21 DEBUG TaskExecutor::notifyAllAndWait WaitForMultipleObjects returned
+2016-09-01 15:52:21 INFO TaskExecutor::notifyAllAndWait finished
+2016-09-01 15:52:21 INFO AnalyticsTracker::~AnalyticsTracker finished
+2016-09-01 15:52:21 INFO TaskExecutor::~TaskExecutor finished
+2016-09-01 15:52:21 INFO TaskExecutor::~TaskExecutor finished
