@@ -1,10 +1,7 @@
-accessid= 'gBYW8VJJnvidZx99';
-accesskey= 'ROifRaTjbmihDohE6TQRgVx6r7hlro';
-host = 'http://ad-dyhjw.oss-cn-hangzhou.aliyuncs.com/';
+accessid= '';
+accesskey= '';
+host = '';
 
-// accessid = '4xTYDDbEDFoCvmRb';
-// accesskey = '2LFBBR2v76hLisEbUt4Zw3j6PPm9KY';
-// host = 'http://ad-dyhjw1.oss-cn-shanghai.aliyuncs.com';
 
 g_dirname = ''
 g_object_name = ''
